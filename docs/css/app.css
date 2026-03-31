@@ -255,8 +255,8 @@ a:hover { color: var(--accent-gold-light); }
 /* ── Spout Control Grid ─────────────────────────────── */
 .spout-control-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
   margin-bottom: 60px;
 }
 
