@@ -64,6 +64,7 @@
             <div class="sctrl-body">
               <!-- Brewing Visual -->
               <div class="sctrl-visual-area">
+                <div class="brew-pour-water"></div>
                 <div class="brew-dripper"></div>
                 <div class="brew-steam-wrap">
                   <div class="steam-line"></div>

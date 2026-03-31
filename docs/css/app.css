@@ -326,28 +326,49 @@ a:hover { color: var(--accent-gold-light); }
 }
 .spout-ctrl-card:hover .sctrl-idle-icon { color: var(--accent-noble); }
 
-/* Brewing Animation Visualization */
+/* Brewing Animation Visualization (Hand-Drip Pro) */
 .sctrl-visual-area {
-  height: 120px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   margin: 10px 0 20px;
-  background: var(--bg-primary);
+  background: linear-gradient(to bottom, #fcfcfd, #f5f5f7);
   border-radius: var(--radius-md);
   overflow: hidden;
+  border: 1px solid var(--glass-border);
 }
 
-/* Dripper Shape */
+/* Water Pouring from Above (Spiral Hand-Drip) */
+.brew-pour-water {
+  position: absolute;
+  top: 10px;
+  width: 40px;
+  height: 20px;
+  border: 1.5px solid var(--accent-noble);
+  border-radius: 50%;
+  opacity: 0;
+  animation: spiral-pour 2s infinite linear;
+  z-index: 6;
+}
+
+@keyframes spiral-pour {
+  0% { transform: scale(0.2) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: scale(1.2) rotate(360deg); opacity: 0; }
+}
+
+/* Dripper Shape (Refined) */
 .brew-dripper {
-  width: 50px;
-  height: 35px;
+  width: 54px;
+  height: 38px;
   background: var(--accent-dark);
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
   position: relative;
   z-index: 5;
+  box-shadow: inset 0 -4px 10px rgba(0,0,0,0.5);
 }
 .brew-dripper::after {
   content: '';
@@ -355,77 +376,98 @@ a:hover { color: var(--accent-gold-light); }
   bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 10px;
+  width: 8px;
   height: 4px;
-  background: #4a342e; /* Coffee color exit */
+  background: #3c2a21;
   border-radius: 2px;
 }
 
-/* Falling Stream */
+/* Organic Falling Stream (Hand-Drip style) */
 .brew-stream {
   position: absolute;
-  top: 55px;
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px;
-  height: 40px;
-  background: linear-gradient(to bottom, #4a342e, #6f4e37);
+  width: 2.5px;
+  height: 45px;
+  background: #4a342e;
   z-index: 2;
-  animation: stream-flow 0.5s infinite linear;
+  filter: blur(0.5px);
 }
 
-@keyframes stream-flow {
-  0% { transform: translateX(-50%) scaleY(0.9); opacity: 0.8; }
-  50% { transform: translateX(-50%) scaleY(1.1); opacity: 1; }
-  100% { transform: translateX(-50%) scaleY(0.9); opacity: 0.8; }
+.brew-stream::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(to bottom, 
+    transparent, 
+    transparent 5px, 
+    rgba(255,255,255,0.2) 5px, 
+    rgba(255,255,255,0.2) 10px);
+  animation: stream-drip 0.8s infinite linear;
 }
 
-/* Carafe / Server */
+@keyframes stream-drip {
+  from { background-position: 0 0; }
+  to { background-position: 0 40px; }
+}
+
+/* Carafe / Server (Glass Look) */
 .brew-server {
-  width: 45px;
-  height: 40px;
-  border: 2px solid var(--accent-silver);
+  width: 50px;
+  height: 45px;
+  border: 2px solid rgba(142, 142, 147, 0.3);
   border-top: none;
-  border-radius: 0 0 10px 10px;
+  border-radius: 2px 2px 12px 12px;
   position: relative;
-  margin-top: 35px;
+  margin-top: 38px;
   z-index: 3;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   overflow: hidden;
 }
 
-/* Liquid filling up */
+/* Coffee Liquid with Wave Surface */
 .brew-liquid {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0%; /* Controlled by JS */
-  background: linear-gradient(to top, #3c2a21, #4a342e);
+  height: 0%; 
+  background: linear-gradient(to top, #2c1e17, #4a342e);
   transition: height 0.5s ease-out;
 }
 
-/* Steam Animation */
+.brew-liquid::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 200%;
+  height: 8px;
+  background: #4a342e;
+  border-radius: 40%;
+  animation: liquid-wave 2s infinite linear;
+}
+
+@keyframes liquid-wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Steam Animation (Refined) */
 .brew-steam-wrap {
   position: absolute;
-  top: 40px;
+  top: 45px;
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 .steam-line {
-  width: 2px;
-  height: 15px;
-  background: rgba(197, 160, 89, 0.2);
-  border-radius: 2px;
-  animation: steam-rise 2s infinite ease-out;
-}
-.steam-line:nth-child(2) { animation-delay: 0.5s; }
-.steam-line:nth-child(3) { animation-delay: 1s; }
-
-@keyframes steam-rise {
-  0% { transform: translateY(0) scaleY(1); opacity: 0; }
-  50% { transform: translateY(-15px) scaleY(1.5); opacity: 0.5; }
-  100% { transform: translateY(-30px) scaleY(2); opacity: 0; }
+  width: 2.5px;
+  height: 18px;
+  background: rgba(197, 160, 89, 0.15);
+  border-radius: 4px;
+  filter: blur(1px);
+  animation: steam-rise 2.5s infinite ease-out;
 }
 
 /* Update sctrl-body for active state to accommodate visual */
