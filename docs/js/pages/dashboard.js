@@ -62,13 +62,30 @@
               <div class="sctrl-badge sctrl-badge-active">Brewing</div>
             </div>
             <div class="sctrl-body">
+              <!-- Brewing Visual -->
+              <div class="sctrl-visual-area">
+                <div class="brew-dripper"></div>
+                <div class="brew-steam-wrap">
+                  <div class="steam-line"></div>
+                  <div class="steam-line"></div>
+                  <div class="steam-line"></div>
+                </div>
+                <div class="brew-stream"></div>
+                <div class="brew-server">
+                  <div class="brew-liquid" id="brew-liquid-${s.id}" style="height:${brew.progress}%"></div>
+                </div>
+              </div>
+              
               <div class="sctrl-recipe-name">${brew.recipe.name}</div>
               <div class="sctrl-recipe-info">${brew.recipe.dripper} · ${brew.recipe.coffeeWeight}g / ${brew.recipe.waterWeight}ml</div>
               <div class="sctrl-progress-wrap">
                 <div class="sctrl-progress-bar">
                   <div class="sctrl-progress-fill" style="width:${brew.progress}%"></div>
                 </div>
-                <span class="sctrl-progress-pct">${Math.round(brew.progress)}%</span>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="sctrl-progress-pct">${Math.round(brew.progress)}%</span>
+                  <span style="font-size:11px; color:var(--text-muted); font-weight:600;">EXTRACTING...</span>
+                </div>
               </div>
               <div class="sctrl-brew-stats">
                 <div><span class="sctrl-stat-label">Stage</span><span class="sctrl-stat-value" id="brew-stage-${s.id}">${brew.stage.label}</span></div>
@@ -215,6 +232,10 @@
       if (timeEl) timeEl.textContent = `${formatTime(Math.floor(brew.elapsed))} / ${formatTime(brew.totalDuration)}`;
       if (waterEl) waterEl.textContent = `${Math.floor((brew.progress / 100) * totalWater)} / ${totalWater} ml`;
       if (tempEl) tempEl.textContent = `${(brew.recipe.waterTemp + (Math.random() - 0.5) * 1).toFixed(1)}°C`;
+
+      // Update liquid height visual
+      const liquidEl = document.getElementById(`brew-liquid-${spoutId}`);
+      if (liquidEl) liquidEl.style.height = `${brew.progress}%`;
 
       // Update progress bar
       const card = document.querySelector(`.spout-ctrl-card:nth-child(${spoutId})`);
