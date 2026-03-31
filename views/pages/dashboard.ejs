@@ -1,0 +1,79 @@
+<!-- Dashboard Page -->
+<div class="page-content">
+  <!-- Top Stats Row -->
+  <div class="grid-4 mb-24">
+    <div class="glass-card stat-card">
+      <div class="stat-icon amber">&#9749;</div>
+      <div class="stat-content">
+        <div class="stat-value" id="today-brews">18</div>
+        <div class="stat-label">Today's Brews</div>
+      </div>
+    </div>
+    <div class="glass-card stat-card">
+      <div class="stat-icon gold">&#9777;</div>
+      <div class="stat-content">
+        <div class="stat-value" id="total-brews">5,550</div>
+        <div class="stat-label">Total Brews</div>
+      </div>
+    </div>
+    <div class="glass-card stat-card">
+      <div class="stat-icon ok">&#10003;</div>
+      <div class="stat-content">
+        <div class="stat-value" id="active-spouts">4/5</div>
+        <div class="stat-label">Spouts Online</div>
+      </div>
+    </div>
+    <div class="glass-card stat-card">
+      <div class="stat-icon info">&#9733;</div>
+      <div class="stat-content">
+        <div class="stat-value" id="recipe-count">10</div>
+        <div class="stat-label">Recipes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gauges Row -->
+  <div class="grid-3 mb-24">
+    <div class="glass-card glass-card-lg text-center">
+      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Boiler Temperature</h3>
+      <div id="gauge-temp"></div>
+    </div>
+    <div class="glass-card glass-card-lg text-center">
+      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Water Level</h3>
+      <div id="gauge-water"></div>
+    </div>
+    <div class="glass-card glass-card-lg text-center">
+      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">System Pressure</h3>
+      <div id="gauge-pressure"></div>
+    </div>
+  </div>
+
+  <!-- Spout Status Grid -->
+  <div class="glass-card glass-card-lg mb-24">
+    <div class="section-header mb-16">
+      <div>
+        <h3 class="section-title">Spout Status</h3>
+        <p class="section-subtitle">Real-time status of all 5 spouts</p>
+      </div>
+    </div>
+    <div class="spout-grid" id="spout-grid"></div>
+  </div>
+
+  <!-- Recent Sessions & Alarms -->
+  <div class="grid-2">
+    <div class="glass-card glass-card-lg">
+      <div class="section-header mb-16">
+        <h3 class="section-title">Recent Brews</h3>
+        <a href="/usage" class="btn btn-ghost btn-sm">View All</a>
+      </div>
+      <div id="recent-brews"></div>
+    </div>
+    <div class="glass-card glass-card-lg">
+      <div class="section-header mb-16">
+        <h3 class="section-title">Active Alarms</h3>
+        <a href="/alarms" class="btn btn-ghost btn-sm">View All</a>
+      </div>
+      <div id="active-alarms"></div>
+    </div>
+  </div>
+</div>

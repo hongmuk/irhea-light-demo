@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <div class="app-shell">
+    <%- include('partials/sidebar') %>
+    <div class="main-area">
+      <%- include('partials/topbar') %>
+      <main class="content-area">
+        <div class="page-content">
+          <%- include('pages/' + page) %>
+        </div>
+      </main>
+    </div>
+  </div>
+  <%- include('partials/toast') %>
+
+  <!-- Global JS -->
+  <script src="/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/js/components/gauge.js"></script>
+  <script src="/js/components/progress-ring.js"></script>
+  <script src="/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  <% if (page === 'dashboard') { %><script src="/js/pages/dashboard.js"></script><% } %>
+  <% if (page === 'recipe-list') { %><script src="/js/pages/recipe-list.js"></script><% } %>
+  <% if (page === 'recipe-detail') { %><script src="/js/pages/recipe-detail.js"></script><% } %>
+  <% if (page === 'recipe-edit') { %><script src="/js/pages/recipe-edit.js"></script><% } %>
+  <% if (page === 'brewing') { %><script src="/js/pages/brewing.js"></script><% } %>
+  <% if (page === 'brewing-complete') { %><script src="/js/pages/brewing.js"></script><% } %>
+  <% if (page === 'favorites') { %><script src="/js/pages/favorites.js"></script><% } %>
+  <% if (page === 'alarms') { %><script src="/js/pages/alarms.js"></script><% } %>
+  <% if (page === 'settings') { %><script src="/js/pages/settings.js"></script><% } %>
+  <% if (page === 'calibration') { %><script src="/js/pages/calibration.js"></script><% } %>
+  <% if (page === 'firmware') { %><script src="/js/pages/firmware.js"></script><% } %>
+  <% if (page === 'system-info') { %><script src="/js/pages/system-info.js"></script><% } %>
+  <% if (page === 'usage') { %><script src="/js/pages/usage.js"></script><% } %>
+</body>
+</html>

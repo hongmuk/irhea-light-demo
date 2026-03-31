@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | Edit Recipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Main</div>
+    <a href="/irhea-light-demo/" class="nav-item ">
+      <span class="nav-icon">&#9632;</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="/irhea-light-demo/recipes" class="nav-item active">
+      <span class="nav-icon">&#9749;</span>
+      <span class="nav-label">Recipes</span>
+    </a>
+    <a href="/irhea-light-demo/brewing" class="nav-item ">
+      <span class="nav-icon">&#9200;</span>
+      <span class="nav-label">Brewing</span>
+    </a>
+    <a href="/irhea-light-demo/favorites" class="nav-item ">
+      <span class="nav-icon">&#9733;</span>
+      <span class="nav-label">Favorites</span>
+    </a>
+
+    <div class="nav-section-title">Monitor</div>
+    <a href="/irhea-light-demo/alarms" class="nav-item ">
+      <span class="nav-icon">&#9888;</span>
+      <span class="nav-label">Alarms</span>
+      <span class="nav-badge" id="alarm-badge">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="nav-item ">
+      <span class="nav-icon">&#9636;</span>
+      <span class="nav-label">Usage History</span>
+    </a>
+
+    <div class="nav-section-title">System</div>
+    <a href="/irhea-light-demo/settings" class="nav-item ">
+      <span class="nav-icon">&#9881;</span>
+      <span class="nav-label">Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="nav-item ">
+      <span class="nav-icon">&#8982;</span>
+      <span class="nav-label">Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="nav-item ">
+      <span class="nav-icon">&#8635;</span>
+      <span class="nav-label">Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="nav-item ">
+      <span class="nav-icon">&#9432;</span>
+      <span class="nav-label">System Info</span>
+    </a>
+  </nav>
+</aside>
+
+    <div class="main-area">
+      <header class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+  <h1 class="topbar-title">Edit Recipe</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>iRHEA-Light Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+      <main class="content-area">
+        <div class="page-content">
+          <!-- Recipe Edit Page -->
+<div class="page-content">
+  <div class="flex items-center gap-16 mb-24">
+    <a class="btn btn-ghost btn-icon" id="back-link" href="#">&#8592;</a>
+    <div style="flex:1;">
+      <h2 class="section-title">Edit Recipe</h2>
+      <p class="section-subtitle" id="edit-recipe-name"></p>
+    </div>
+    <button class="btn btn-secondary" id="btn-cancel">Cancel</button>
+    <button class="btn btn-primary" id="btn-save">&#10003; Save</button>
+  </div>
+
+  <div class="grid-2 mb-24">
+    <!-- Basic Info -->
+    <div class="glass-card glass-card-lg">
+      <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Basic Information</h3>
+      <div class="form-group">
+        <label class="form-label">Recipe Name</label>
+        <input class="form-input" type="text" id="edit-name" />
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Dripper</label>
+          <select class="form-input" id="edit-dripper">
+            <option value="V60">V60</option>
+            <option value="Kalita Wave">Kalita Wave</option>
+            <option value="Chemex">Chemex</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Grind Size (clicks)</label>
+          <input class="form-input" type="number" id="edit-grind" min="1" max="40" />
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Coffee (g)</label>
+          <input class="form-input" type="number" id="edit-coffee" min="5" max="50" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Water (ml)</label>
+          <input class="form-input" type="number" id="edit-water" min="50" max="1000" />
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Temperature (°C)</label>
+          <input class="form-input" type="number" id="edit-temp" min="85" max="98" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ratio</label>
+          <input class="form-input" type="text" id="edit-ratio" placeholder="1:16" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <textarea class="form-input" id="edit-notes" rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- Stage Preview -->
+    <div class="glass-card glass-card-lg">
+      <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Stage Preview</h3>
+      <div id="edit-timeline-preview"></div>
+      <div style="margin-top:16px;">
+        <div id="edit-validation" style="font-size:13px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stages Editor -->
+  <div class="glass-card glass-card-lg">
+    <div class="section-header mb-16">
+      <h3 class="section-title">Extraction Stages</h3>
+      <button class="btn btn-secondary btn-sm" id="btn-add-stage">+ Add Stage</button>
+    </div>
+    <div id="stages-container"></div>
+  </div>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+
+  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <!-- Global JS -->
+  <script src="/irhea-light-demo/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/irhea-light-demo/js/components/gauge.js"></script>
+  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
+  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  
+  
+  
+  <script src="/irhea-light-demo/js/pages/recipe-edit.js"></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "spiralTypes": [
+    { "id": 0, "name": "None", "description": "No spiral (pause)" },
+    { "id": 1, "name": "Center", "description": "Center pour for bloom" },
+    { "id": 2, "name": "Inward Spiral", "description": "Outside to center spiral" },
+    { "id": 3, "name": "Outward Spiral", "description": "Center to outside spiral" },
+    { "id": 4, "name": "Full Spiral", "description": "Full circle spiral pattern" }
+  ],
+  "dripRanges": {
+    "minFlowRate": 1.5,
+    "maxFlowRate": 8.0,
+    "defaultFlowRate": 3.5,
+    "unit": "ml/s"
+  },
+  "pourRanges": {
+    "minWaterAmount": 10,
+    "maxWaterAmount": 500,
+    "minTime": 5,
+    "maxTime": 120,
+    "minStages": 2,
+    "maxStages": 10
+  },
+  "tempRanges": {
+    "min": 85,
+    "max": 98,
+    "default": 93,
+    "unit": "°C"
+  },
+  "grindSizeRange": {
+    "min": 1,
+    "max": 40,
+    "unit": "clicks"
+  }
+}

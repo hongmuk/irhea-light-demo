@@ -1,0 +1,62 @@
+<!-- Brewing Progress Page -->
+<div class="page-content">
+  <div class="flex items-center justify-center" style="min-height:calc(100vh - 140px);">
+    <div style="text-align:center;max-width:600px;width:100%;">
+      <!-- Progress Ring -->
+      <div id="brew-ring" style="margin-bottom:32px;"></div>
+
+      <!-- Current Stage Info -->
+      <div class="glass-card glass-card-lg mb-24" style="text-align:left;">
+        <div class="grid-3" style="text-align:center;">
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Stage</div>
+            <div style="font-size:18px;font-weight:600;color:var(--text-primary);" id="brew-stage">Bloom</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Elapsed</div>
+            <div style="font-size:18px;font-weight:600;color:var(--accent-amber);font-variant-numeric:tabular-nums;" id="brew-elapsed">0:00</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Remaining</div>
+            <div style="font-size:18px;font-weight:600;color:var(--text-primary);font-variant-numeric:tabular-nums;" id="brew-remaining">--:--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-time Metrics -->
+      <div class="grid-3 mb-24">
+        <div class="glass-card text-center">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Temperature</div>
+          <div style="font-size:24px;font-weight:700;color:var(--accent-amber);font-variant-numeric:tabular-nums;" id="brew-temp">92.8°C</div>
+        </div>
+        <div class="glass-card text-center">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Flow Rate</div>
+          <div style="font-size:24px;font-weight:700;color:var(--status-info);font-variant-numeric:tabular-nums;" id="brew-flow">3.5 ml/s</div>
+        </div>
+        <div class="glass-card text-center">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Water Poured</div>
+          <div style="font-size:24px;font-weight:700;color:var(--status-ok);font-variant-numeric:tabular-nums;" id="brew-water">0 ml</div>
+        </div>
+      </div>
+
+      <!-- Stage Progress -->
+      <div class="glass-card glass-card-lg mb-24" style="text-align:left;">
+        <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">Stage Progress</h3>
+        <div id="brew-stages-bar"></div>
+      </div>
+
+      <!-- Recipe Info -->
+      <div class="glass-card" style="text-align:left;">
+        <div class="flex items-center gap-12">
+          <span style="font-size:18px;">&#9749;</span>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text-primary);" id="brew-recipe-name">Ethiopia Yirgacheffe</div>
+            <div style="font-size:12px;color:var(--text-muted);" id="brew-recipe-info">V60 &middot; 20g / 320ml &middot; 93°C</div>
+          </div>
+          <div style="flex:1;"></div>
+          <span style="font-size:13px;color:var(--text-muted);" id="brew-spout">Spout 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

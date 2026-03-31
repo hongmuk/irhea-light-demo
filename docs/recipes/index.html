@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | Recipes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Main</div>
+    <a href="/irhea-light-demo/" class="nav-item ">
+      <span class="nav-icon">&#9632;</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="/irhea-light-demo/recipes" class="nav-item active">
+      <span class="nav-icon">&#9749;</span>
+      <span class="nav-label">Recipes</span>
+    </a>
+    <a href="/irhea-light-demo/brewing" class="nav-item ">
+      <span class="nav-icon">&#9200;</span>
+      <span class="nav-label">Brewing</span>
+    </a>
+    <a href="/irhea-light-demo/favorites" class="nav-item ">
+      <span class="nav-icon">&#9733;</span>
+      <span class="nav-label">Favorites</span>
+    </a>
+
+    <div class="nav-section-title">Monitor</div>
+    <a href="/irhea-light-demo/alarms" class="nav-item ">
+      <span class="nav-icon">&#9888;</span>
+      <span class="nav-label">Alarms</span>
+      <span class="nav-badge" id="alarm-badge">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="nav-item ">
+      <span class="nav-icon">&#9636;</span>
+      <span class="nav-label">Usage History</span>
+    </a>
+
+    <div class="nav-section-title">System</div>
+    <a href="/irhea-light-demo/settings" class="nav-item ">
+      <span class="nav-icon">&#9881;</span>
+      <span class="nav-label">Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="nav-item ">
+      <span class="nav-icon">&#8982;</span>
+      <span class="nav-label">Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="nav-item ">
+      <span class="nav-icon">&#8635;</span>
+      <span class="nav-label">Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="nav-item ">
+      <span class="nav-icon">&#9432;</span>
+      <span class="nav-label">System Info</span>
+    </a>
+  </nav>
+</aside>
+
+    <div class="main-area">
+      <header class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+  <h1 class="topbar-title">Recipes</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>iRHEA-Light Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+      <main class="content-area">
+        <div class="page-content">
+          <!-- Recipe List Page -->
+<div class="page-content">
+  <div class="section-header mb-20">
+    <div>
+      <h2 class="section-title">Recipes</h2>
+      <p class="section-subtitle">Manage your pour-over recipes</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="flex items-center gap-16 mb-20" style="flex-wrap:wrap;">
+    <div class="search-bar">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="recipe-search" placeholder="Search recipes..." />
+    </div>
+    <div class="filter-pills" id="dripper-filters">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="V60">V60</button>
+      <button class="filter-pill" data-filter="Kalita Wave">Kalita Wave</button>
+      <button class="filter-pill" data-filter="Chemex">Chemex</button>
+    </div>
+    <div style="margin-left:auto;">
+      <select class="form-input" id="recipe-sort" style="width:auto;min-height:40px;padding:8px 40px 8px 12px;">
+        <option value="name">Sort by Name</option>
+        <option value="recent">Sort by Recent</option>
+        <option value="water">Sort by Water</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Recipe Grid -->
+  <div class="grid-3" id="recipe-grid"></div>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+
+  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <!-- Global JS -->
+  <script src="/irhea-light-demo/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/irhea-light-demo/js/components/gauge.js"></script>
+  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
+  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  
+  <script src="/irhea-light-demo/js/pages/recipe-list.js"></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

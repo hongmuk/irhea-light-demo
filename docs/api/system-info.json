@@ -1,0 +1,23 @@
+{
+  "model": "iRHEA-Light 5S",
+  "serialNumber": "IRL-2025-KR-00147",
+  "manufacturer": "Noble Tree Co., Ltd.",
+  "installDate": "2025-06-15",
+  "shopName": "Specialty Coffee Lab",
+  "shopAddress": "Seoul, Gangnam-gu, Teheran-ro 123",
+  "firmware": {
+    "mcp": { "board": "MCP-500", "version": "2.4.1", "buildDate": "2025-12-01" },
+    "mdp": { "board": "MDP-300", "version": "1.8.3", "buildDate": "2025-11-20" },
+    "whp": { "board": "WHP-200", "version": "3.1.0", "buildDate": "2025-12-15" }
+  },
+  "network": {
+    "ip": "192.168.1.100",
+    "mac": "AA:BB:CC:DD:EE:01",
+    "ipcPort": 5000,
+    "protocol": "TCP/IP"
+  },
+  "spoutCount": 5,
+  "boilerCapacity": 8.0,
+  "maxWaterTemp": 98,
+  "supportedDrippers": ["V60", "Kalita Wave", "Chemex"]
+}

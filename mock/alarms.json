@@ -1,0 +1,96 @@
+{
+  "active": [
+    {
+      "id": "A001",
+      "category": "MCP",
+      "severity": "critical",
+      "code": "E-031",
+      "message": "Spout 4 flow sensor timeout",
+      "timestamp": "2026-03-31T08:45:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "A002",
+      "category": "WHP",
+      "severity": "warning",
+      "code": "W-012",
+      "message": "Water level below 30%",
+      "timestamp": "2026-03-31T07:20:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "A003",
+      "category": "MDP",
+      "severity": "warning",
+      "code": "W-008",
+      "message": "Boiler temperature deviation +2.5°C",
+      "timestamp": "2026-03-31T06:55:00Z",
+      "acknowledged": true
+    }
+  ],
+  "history": [
+    {
+      "id": "H001",
+      "category": "MCP",
+      "severity": "critical",
+      "code": "E-015",
+      "message": "Communication timeout with MCP board",
+      "timestamp": "2026-03-30T14:30:00Z",
+      "resolvedAt": "2026-03-30T14:35:00Z"
+    },
+    {
+      "id": "H002",
+      "category": "WHP",
+      "severity": "info",
+      "code": "I-003",
+      "message": "Water tank refilled",
+      "timestamp": "2026-03-30T10:00:00Z",
+      "resolvedAt": "2026-03-30T10:00:00Z"
+    },
+    {
+      "id": "H003",
+      "category": "MDP",
+      "severity": "warning",
+      "code": "W-005",
+      "message": "Drain valve stuck open for 5s",
+      "timestamp": "2026-03-29T16:20:00Z",
+      "resolvedAt": "2026-03-29T16:22:00Z"
+    },
+    {
+      "id": "H004",
+      "category": "MCP",
+      "severity": "warning",
+      "code": "W-022",
+      "message": "Spout 2 calibration drift detected",
+      "timestamp": "2026-03-29T09:10:00Z",
+      "resolvedAt": "2026-03-29T09:45:00Z"
+    },
+    {
+      "id": "H005",
+      "category": "WHP",
+      "severity": "critical",
+      "code": "E-040",
+      "message": "Water heater over-temperature protection activated",
+      "timestamp": "2026-03-28T11:05:00Z",
+      "resolvedAt": "2026-03-28T11:10:00Z"
+    },
+    {
+      "id": "H006",
+      "category": "MDP",
+      "severity": "info",
+      "code": "I-001",
+      "message": "Scheduled rinse cycle completed",
+      "timestamp": "2026-03-28T06:00:00Z",
+      "resolvedAt": "2026-03-28T06:05:00Z"
+    },
+    {
+      "id": "H007",
+      "category": "MCP",
+      "severity": "info",
+      "code": "I-010",
+      "message": "Firmware update completed successfully",
+      "timestamp": "2026-03-27T22:00:00Z",
+      "resolvedAt": "2026-03-27T22:00:00Z"
+    }
+  ]
+}

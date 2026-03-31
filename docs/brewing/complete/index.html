@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | Brewing Complete</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Main</div>
+    <a href="/irhea-light-demo/" class="nav-item ">
+      <span class="nav-icon">&#9632;</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="/irhea-light-demo/recipes" class="nav-item ">
+      <span class="nav-icon">&#9749;</span>
+      <span class="nav-label">Recipes</span>
+    </a>
+    <a href="/irhea-light-demo/brewing" class="nav-item active">
+      <span class="nav-icon">&#9200;</span>
+      <span class="nav-label">Brewing</span>
+    </a>
+    <a href="/irhea-light-demo/favorites" class="nav-item ">
+      <span class="nav-icon">&#9733;</span>
+      <span class="nav-label">Favorites</span>
+    </a>
+
+    <div class="nav-section-title">Monitor</div>
+    <a href="/irhea-light-demo/alarms" class="nav-item ">
+      <span class="nav-icon">&#9888;</span>
+      <span class="nav-label">Alarms</span>
+      <span class="nav-badge" id="alarm-badge">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="nav-item ">
+      <span class="nav-icon">&#9636;</span>
+      <span class="nav-label">Usage History</span>
+    </a>
+
+    <div class="nav-section-title">System</div>
+    <a href="/irhea-light-demo/settings" class="nav-item ">
+      <span class="nav-icon">&#9881;</span>
+      <span class="nav-label">Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="nav-item ">
+      <span class="nav-icon">&#8982;</span>
+      <span class="nav-label">Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="nav-item ">
+      <span class="nav-icon">&#8635;</span>
+      <span class="nav-label">Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="nav-item ">
+      <span class="nav-icon">&#9432;</span>
+      <span class="nav-label">System Info</span>
+    </a>
+  </nav>
+</aside>
+
+    <div class="main-area">
+      <header class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+  <h1 class="topbar-title">Brewing Complete</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>iRHEA-Light Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+      <main class="content-area">
+        <div class="page-content">
+          <!-- Brewing Complete Page -->
+<div class="page-content">
+  <div class="flex items-center justify-center" style="min-height:calc(100vh - 140px);">
+    <div style="text-align:center;max-width:500px;width:100%;">
+      <!-- Complete Animation -->
+      <div class="brew-complete-icon">&#10003;</div>
+      <h2 style="font-size:28px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Brewing Complete!</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:32px;">Your pour-over is ready to serve</p>
+
+      <!-- Result Summary -->
+      <div class="glass-card glass-card-lg mb-24" style="text-align:left;">
+        <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Brew Summary</h3>
+        <div class="info-grid">
+          <div class="info-cell">
+            <div class="info-label">Recipe</div>
+            <div class="info-value">Ethiopia Yirgacheffe</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Spout</div>
+            <div class="info-value">Spout 1</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Duration</div>
+            <div class="info-value">3:15</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Water Used</div>
+            <div class="info-value">318 ml</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Avg Temperature</div>
+            <div class="info-value">92.8°C</div>
+          </div>
+          <div class="info-cell">
+            <div class="info-label">Stages Completed</div>
+            <div class="info-value">7 / 7</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-center gap-16">
+        <button class="btn btn-secondary btn-lg" onclick="location.href=nav('/')">
+          &#9632; Dashboard
+        </button>
+        <button class="btn btn-primary btn-lg" onclick="location.href=nav('/brewing')">
+          &#9654; Brew Again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+
+  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <!-- Global JS -->
+  <script src="/irhea-light-demo/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/irhea-light-demo/js/components/gauge.js"></script>
+  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
+  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  
+  
+  
+  
+  
+  <script src="/irhea-light-demo/js/pages/brewing.js"></script>
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

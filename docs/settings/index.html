@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | Settings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Main</div>
+    <a href="/irhea-light-demo/" class="nav-item ">
+      <span class="nav-icon">&#9632;</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="/irhea-light-demo/recipes" class="nav-item ">
+      <span class="nav-icon">&#9749;</span>
+      <span class="nav-label">Recipes</span>
+    </a>
+    <a href="/irhea-light-demo/brewing" class="nav-item ">
+      <span class="nav-icon">&#9200;</span>
+      <span class="nav-label">Brewing</span>
+    </a>
+    <a href="/irhea-light-demo/favorites" class="nav-item ">
+      <span class="nav-icon">&#9733;</span>
+      <span class="nav-label">Favorites</span>
+    </a>
+
+    <div class="nav-section-title">Monitor</div>
+    <a href="/irhea-light-demo/alarms" class="nav-item ">
+      <span class="nav-icon">&#9888;</span>
+      <span class="nav-label">Alarms</span>
+      <span class="nav-badge" id="alarm-badge">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="nav-item ">
+      <span class="nav-icon">&#9636;</span>
+      <span class="nav-label">Usage History</span>
+    </a>
+
+    <div class="nav-section-title">System</div>
+    <a href="/irhea-light-demo/settings" class="nav-item active">
+      <span class="nav-icon">&#9881;</span>
+      <span class="nav-label">Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="nav-item ">
+      <span class="nav-icon">&#8982;</span>
+      <span class="nav-label">Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="nav-item ">
+      <span class="nav-icon">&#8635;</span>
+      <span class="nav-label">Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="nav-item ">
+      <span class="nav-icon">&#9432;</span>
+      <span class="nav-label">System Info</span>
+    </a>
+  </nav>
+</aside>
+
+    <div class="main-area">
+      <header class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+  <h1 class="topbar-title">Settings</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>iRHEA-Light Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+      <main class="content-area">
+        <div class="page-content">
+          <!-- Settings Page -->
+<div class="page-content">
+  <div class="section-header mb-20">
+    <div>
+      <h2 class="section-title">System Settings</h2>
+      <p class="section-subtitle">Configure machine parameters</p>
+    </div>
+  </div>
+
+  <!-- Boiler Settings -->
+  <div class="glass-card glass-card-lg mb-24">
+    <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Boiler Temperature</h3>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Target Temperature</div>
+        <div class="setting-desc">Current: <span id="current-temp">93.0</span>°C (Range: 85–98°C)</div>
+      </div>
+      <div class="setting-control" style="min-width:300px;">
+        <input type="range" class="range-slider" id="temp-slider" min="85" max="98" step="0.5" value="93" />
+        <div class="flex justify-between" style="font-size:11px;color:var(--text-muted);margin-top:4px;">
+          <span>85°C</span>
+          <span id="temp-display" style="color:var(--accent-amber);font-weight:600;">93.0°C</span>
+          <span>98°C</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drain & Rinse -->
+  <div class="glass-card glass-card-lg mb-24">
+    <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Drain & Rinse</h3>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Auto Drain</div>
+        <div class="setting-desc">Periodic drain cycle every 120 minutes</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle">
+          <input type="checkbox" id="drain-toggle" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Auto Rinse</div>
+        <div class="setting-desc">Periodic rinse cycle every 60 minutes</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle">
+          <input type="checkbox" id="rinse-toggle" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Manual Drain</div>
+        <div class="setting-desc">Trigger a drain cycle now</div>
+      </div>
+      <div class="setting-control">
+        <button class="btn btn-secondary btn-sm" id="btn-drain">Run Drain</button>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Manual Rinse</div>
+        <div class="setting-desc">Trigger a rinse cycle now</div>
+      </div>
+      <div class="setting-control">
+        <button class="btn btn-secondary btn-sm" id="btn-rinse">Run Rinse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- General -->
+  <div class="glass-card glass-card-lg mb-24">
+    <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">General</h3>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Language</div>
+        <div class="setting-desc">Interface language</div>
+      </div>
+      <div class="setting-control">
+        <select class="form-input" id="lang-select" style="min-height:40px;width:160px;">
+          <option value="ko" selected>Korean</option>
+          <option value="en">English</option>
+          <option value="ja">Japanese</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Default Dripper</div>
+        <div class="setting-desc">Default dripper for new recipes</div>
+      </div>
+      <div class="setting-control">
+        <select class="form-input" id="dripper-select" style="min-height:40px;width:160px;">
+          <option value="V60" selected>V60</option>
+          <option value="Kalita Wave">Kalita Wave</option>
+          <option value="Chemex">Chemex</option>
+        </select>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Sound</div>
+        <div class="setting-desc">Enable system sounds</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle">
+          <input type="checkbox" id="sound-toggle" checked />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Display Brightness</div>
+        <div class="setting-desc">Adjust screen brightness</div>
+      </div>
+      <div class="setting-control" style="min-width:200px;">
+        <input type="range" class="range-slider" id="brightness-slider" min="20" max="100" step="5" value="80" />
+        <div class="text-center" style="font-size:11px;color:var(--text-muted);margin-top:4px;">
+          <span id="brightness-display">80%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Water Level Alarm -->
+  <div class="glass-card glass-card-lg">
+    <h3 style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:16px;">Water Level Alarm</h3>
+    <div class="setting-row">
+      <div class="setting-info">
+        <div class="setting-title">Low Water Threshold</div>
+        <div class="setting-desc">Alarm when water level falls below this percentage</div>
+      </div>
+      <div class="setting-control" style="min-width:200px;">
+        <input type="range" class="range-slider" id="water-threshold" min="10" max="50" step="5" value="20" />
+        <div class="text-center" style="font-size:11px;color:var(--text-muted);margin-top:4px;">
+          <span id="water-threshold-display">20%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+
+
+  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <!-- Global JS -->
+  <script src="/irhea-light-demo/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/irhea-light-demo/js/components/gauge.js"></script>
+  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
+  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/irhea-light-demo/js/pages/settings.js"></script>
+  
+  
+  
+  
+</body>
+</html>
