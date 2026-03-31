@@ -13,77 +13,23 @@
 </head>
 <body>
   <div class="app-shell">
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebarMobile()"></div>
-    <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo">
+    <header class="topbar">
+  <div class="topbar-brand">
     <div class="logo-icon">iR</div>
     <span class="logo-text">iRHEA-Light</span>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-title">Main</div>
-    <a href="/irhea-light-demo/" class="nav-item ">
-      <span class="nav-icon">&#9632;</span>
-      <span class="nav-label">Dashboard</span>
-    </a>
-    <a href="/irhea-light-demo/recipes" class="nav-item ">
-      <span class="nav-icon">&#9749;</span>
-      <span class="nav-label">Recipes</span>
-    </a>
-    <a href="/irhea-light-demo/brewing" class="nav-item active">
-      <span class="nav-icon">&#9200;</span>
-      <span class="nav-label">Brewing</span>
-    </a>
-    <a href="/irhea-light-demo/favorites" class="nav-item ">
-      <span class="nav-icon">&#9733;</span>
-      <span class="nav-label">Favorites</span>
-    </a>
-
-    <div class="nav-section-title">Monitor</div>
-    <a href="/irhea-light-demo/alarms" class="nav-item ">
-      <span class="nav-icon">&#9888;</span>
-      <span class="nav-label">Alarms</span>
-      <span class="nav-badge" id="alarm-badge">3</span>
-    </a>
-    <a href="/irhea-light-demo/usage" class="nav-item ">
-      <span class="nav-icon">&#9636;</span>
-      <span class="nav-label">Usage History</span>
-    </a>
-
-    <div class="nav-section-title">System</div>
-    <a href="/irhea-light-demo/settings" class="nav-item ">
-      <span class="nav-icon">&#9881;</span>
-      <span class="nav-label">Settings</span>
-    </a>
-    <a href="/irhea-light-demo/calibration" class="nav-item ">
-      <span class="nav-icon">&#8982;</span>
-      <span class="nav-label">Calibration</span>
-    </a>
-    <a href="/irhea-light-demo/firmware" class="nav-item ">
-      <span class="nav-icon">&#8635;</span>
-      <span class="nav-label">Firmware</span>
-    </a>
-    <a href="/irhea-light-demo/system-info" class="nav-item ">
-      <span class="nav-icon">&#9432;</span>
-      <span class="nav-label">System Info</span>
-    </a>
-  </nav>
-</aside>
-
-    <div class="main-area">
-      <header class="topbar">
-  <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
   <h1 class="topbar-title">Brewing</h1>
   <div class="topbar-spacer"></div>
   <div class="topbar-status">
     <span class="status-dot"></span>
-    <span>iRHEA-Light Connected</span>
+    <span>Connected</span>
   </div>
   <div class="topbar-clock" id="topbar-clock"></div>
 </header>
 
-      <main class="content-area">
-        <div class="page-content">
-          <!-- Brewing Progress Page -->
+    <main class="content-area">
+      <div class="page-content">
+        <!-- Brewing Progress Page -->
 <div class="page-content">
   <div class="flex items-center justify-center" style="min-height:calc(100vh - 140px);">
     <div style="text-align:center;max-width:600px;width:100%;">
@@ -146,10 +92,67 @@
   </div>
 </div>
 
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
+    <nav class="bottom-nav" id="bottom-nav">
+  <a href="/irhea-light-demo/" class="bnav-item ">
+    <span class="bnav-icon">&#9632;</span>
+    <span class="bnav-label">Dashboard</span>
+  </a>
+  <a href="/irhea-light-demo/recipes" class="bnav-item ">
+    <span class="bnav-icon">&#9749;</span>
+    <span class="bnav-label">Recipes</span>
+  </a>
+  <a href="/irhea-light-demo/brewing" class="bnav-item active">
+    <span class="bnav-icon">&#9200;</span>
+    <span class="bnav-label">Brewing</span>
+  </a>
+  <a href="/irhea-light-demo/favorites" class="bnav-item ">
+    <span class="bnav-icon">&#9733;</span>
+    <span class="bnav-label">Favorites</span>
+  </a>
+  <button class="bnav-item " onclick="toggleMoreMenu()">
+    <span class="bnav-icon">&#8943;</span>
+    <span class="bnav-label">More</span>
+  </button>
+</nav>
+
   </div>
+
+  <!-- More Menu Overlay -->
+  <div class="more-overlay" id="more-overlay" onclick="closeMoreMenu()"></div>
+  <div class="more-menu" id="more-menu">
+    <div class="more-menu-header">
+      <span>System</span>
+      <button class="more-menu-close" onclick="closeMoreMenu()">&times;</button>
+    </div>
+    <a href="/irhea-light-demo/alarms" class="more-menu-item ">
+      <span class="more-icon">&#9888;</span>
+      <span>Alarms</span>
+      <span class="nav-badge" id="alarm-badge-more">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="more-menu-item ">
+      <span class="more-icon">&#9636;</span>
+      <span>Usage History</span>
+    </a>
+    <a href="/irhea-light-demo/settings" class="more-menu-item ">
+      <span class="more-icon">&#9881;</span>
+      <span>Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="more-menu-item ">
+      <span class="more-icon">&#8982;</span>
+      <span>Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="more-menu-item ">
+      <span class="more-icon">&#8635;</span>
+      <span>Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="more-menu-item ">
+      <span class="more-icon">&#9432;</span>
+      <span>System Info</span>
+    </a>
+  </div>
+
   <div class="toast-container" id="toast-container"></div>
 
 

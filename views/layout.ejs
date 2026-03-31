@@ -5,17 +5,49 @@
 </head>
 <body>
   <div class="app-shell">
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebarMobile()"></div>
-    <%- include('partials/sidebar') %>
-    <div class="main-area">
-      <%- include('partials/topbar') %>
-      <main class="content-area">
-        <div class="page-content">
-          <%- include('pages/' + page) %>
-        </div>
-      </main>
-    </div>
+    <%- include('partials/topbar') %>
+    <main class="content-area">
+      <div class="page-content">
+        <%- include('pages/' + page) %>
+      </div>
+    </main>
+    <%- include('partials/bottomnav') %>
   </div>
+
+  <!-- More Menu Overlay -->
+  <div class="more-overlay" id="more-overlay" onclick="closeMoreMenu()"></div>
+  <div class="more-menu" id="more-menu">
+    <div class="more-menu-header">
+      <span>System</span>
+      <button class="more-menu-close" onclick="closeMoreMenu()">&times;</button>
+    </div>
+    <a href="/alarms" class="more-menu-item <%= activeNav === 'alarms' ? 'active' : '' %>">
+      <span class="more-icon">&#9888;</span>
+      <span>Alarms</span>
+      <span class="nav-badge" id="alarm-badge-more">3</span>
+    </a>
+    <a href="/usage" class="more-menu-item <%= activeNav === 'usage' ? 'active' : '' %>">
+      <span class="more-icon">&#9636;</span>
+      <span>Usage History</span>
+    </a>
+    <a href="/settings" class="more-menu-item <%= activeNav === 'settings' ? 'active' : '' %>">
+      <span class="more-icon">&#9881;</span>
+      <span>Settings</span>
+    </a>
+    <a href="/calibration" class="more-menu-item <%= activeNav === 'calibration' ? 'active' : '' %>">
+      <span class="more-icon">&#8982;</span>
+      <span>Calibration</span>
+    </a>
+    <a href="/firmware" class="more-menu-item <%= activeNav === 'firmware' ? 'active' : '' %>">
+      <span class="more-icon">&#8635;</span>
+      <span>Firmware</span>
+    </a>
+    <a href="/system-info" class="more-menu-item <%= activeNav === 'system-info' ? 'active' : '' %>">
+      <span class="more-icon">&#9432;</span>
+      <span>System Info</span>
+    </a>
+  </div>
+
   <%- include('partials/toast') %>
 
   <!-- Global JS -->

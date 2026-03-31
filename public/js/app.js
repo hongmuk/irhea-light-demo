@@ -16,25 +16,19 @@ function pathSegment(index) {
   return window.location.pathname.split('/')[index + baseOffset];
 }
 
-// ── Sidebar Toggle ─────────────────────────────────────
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebar-overlay');
-  if (window.innerWidth <= 768) {
-    // Mobile: toggle overlay mode
-    sidebar.classList.toggle('mobile-open');
-    if (overlay) overlay.classList.toggle('active');
-  } else {
-    // Desktop: toggle collapsed mode
-    sidebar.classList.toggle('collapsed');
-  }
+// ── More Menu Toggle ────────────────────────────────────
+function toggleMoreMenu() {
+  const overlay = document.getElementById('more-overlay');
+  const menu = document.getElementById('more-menu');
+  overlay.classList.toggle('active');
+  menu.classList.toggle('active');
 }
 
-function closeSidebarMobile() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebar-overlay');
-  sidebar.classList.remove('mobile-open');
-  if (overlay) overlay.classList.remove('active');
+function closeMoreMenu() {
+  const overlay = document.getElementById('more-overlay');
+  const menu = document.getElementById('more-menu');
+  overlay.classList.remove('active');
+  menu.classList.remove('active');
 }
 
 // ── Clock ──────────────────────────────────────────────
@@ -132,7 +126,6 @@ function formatDateTime(dateStr) {
 }
 
 // ── WebSocket Simulator ────────────────────────────────
-// Simulates real-time data updates without an actual WebSocket
 const WSSimulator = {
   listeners: {},
   intervals: [],
@@ -184,21 +177,4 @@ const WSSimulator = {
 // ── Init ───────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   Toast.init();
-
-  // Mobile: close sidebar when clicking a nav link
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      if (window.innerWidth <= 768) closeSidebarMobile();
-    });
-  });
-
-  // Handle window resize: clean up mobile state
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      sidebar.classList.remove('mobile-open');
-      if (overlay) overlay.classList.remove('active');
-    }
-  });
 });

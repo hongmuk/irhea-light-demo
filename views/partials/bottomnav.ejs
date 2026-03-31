@@ -1,0 +1,22 @@
+<nav class="bottom-nav" id="bottom-nav">
+  <a href="/" class="bnav-item <%= activeNav === 'dashboard' ? 'active' : '' %>">
+    <span class="bnav-icon">&#9632;</span>
+    <span class="bnav-label">Dashboard</span>
+  </a>
+  <a href="/recipes" class="bnav-item <%= activeNav === 'recipes' ? 'active' : '' %>">
+    <span class="bnav-icon">&#9749;</span>
+    <span class="bnav-label">Recipes</span>
+  </a>
+  <a href="/brewing" class="bnav-item <%= activeNav === 'brewing' ? 'active' : '' %>">
+    <span class="bnav-icon">&#9200;</span>
+    <span class="bnav-label">Brewing</span>
+  </a>
+  <a href="/favorites" class="bnav-item <%= activeNav === 'favorites' ? 'active' : '' %>">
+    <span class="bnav-icon">&#9733;</span>
+    <span class="bnav-label">Favorites</span>
+  </a>
+  <button class="bnav-item <%= ['alarms','usage','settings','calibration','firmware','system-info'].includes(activeNav) ? 'active' : '' %>" onclick="toggleMoreMenu()">
+    <span class="bnav-icon">&#8943;</span>
+    <span class="bnav-label">More</span>
+  </button>
+</nav>
