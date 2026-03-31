@@ -1,79 +1,53 @@
-<!-- Dashboard Page -->
+<!-- Spout Control Panel — Main Screen -->
 <div class="page-content">
-  <!-- Top Stats Row -->
-  <div class="grid-4 mb-24">
-    <div class="glass-card stat-card">
-      <div class="stat-icon amber">&#9749;</div>
-      <div class="stat-content">
-        <div class="stat-value" id="today-brews">18</div>
-        <div class="stat-label">Today's Brews</div>
-      </div>
+  <!-- Machine Status Bar -->
+  <div class="machine-status-bar mb-16">
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9832;</span>
+      <span class="mstatus-label">Boiler</span>
+      <span class="mstatus-value" id="ms-temp">92.8°C</span>
     </div>
-    <div class="glass-card stat-card">
-      <div class="stat-icon gold">&#9777;</div>
-      <div class="stat-content">
-        <div class="stat-value" id="total-brews">5,550</div>
-        <div class="stat-label">Total Brews</div>
-      </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9687;</span>
+      <span class="mstatus-label">Water</span>
+      <span class="mstatus-value" id="ms-water">72%</span>
     </div>
-    <div class="glass-card stat-card">
-      <div class="stat-icon ok">&#10003;</div>
-      <div class="stat-content">
-        <div class="stat-value" id="active-spouts">4/5</div>
-        <div class="stat-label">Spouts Online</div>
-      </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9041;</span>
+      <span class="mstatus-label">Pressure</span>
+      <span class="mstatus-value" id="ms-pressure">1.02 bar</span>
     </div>
-    <div class="glass-card stat-card">
-      <div class="stat-icon info">&#9733;</div>
-      <div class="stat-content">
-        <div class="stat-value" id="recipe-count">10</div>
-        <div class="stat-label">Recipes</div>
-      </div>
+    <div class="mstatus-divider"></div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon" style="color:var(--status-ok);">&#9679;</span>
+      <span class="mstatus-label">Active</span>
+      <span class="mstatus-value" id="ms-active">1 / 5</span>
+    </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon" style="color:var(--accent-amber);">&#9749;</span>
+      <span class="mstatus-label">Today</span>
+      <span class="mstatus-value" id="ms-today">18</span>
     </div>
   </div>
 
-  <!-- Gauges Row -->
-  <div class="grid-3 mb-24">
-    <div class="glass-card glass-card-lg text-center">
-      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Boiler Temperature</h3>
-      <div id="gauge-temp"></div>
-    </div>
-    <div class="glass-card glass-card-lg text-center">
-      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Water Level</h3>
-      <div id="gauge-water"></div>
-    </div>
-    <div class="glass-card glass-card-lg text-center">
-      <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">System Pressure</h3>
-      <div id="gauge-pressure"></div>
-    </div>
+  <!-- 5 Spout Control Cards -->
+  <div class="spout-control-grid" id="spout-control-grid">
+    <!-- Rendered by JS -->
   </div>
+</div>
 
-  <!-- Spout Status Grid -->
-  <div class="glass-card glass-card-lg mb-24">
-    <div class="section-header mb-16">
-      <div>
-        <h3 class="section-title">Spout Status</h3>
-        <p class="section-subtitle">Real-time status of all 5 spouts</p>
-      </div>
-    </div>
-    <div class="spout-grid" id="spout-grid"></div>
+<!-- Recipe Picker Modal -->
+<div class="modal-overlay" id="recipe-modal-overlay" onclick="closeRecipeModal()"></div>
+<div class="modal-panel" id="recipe-modal">
+  <div class="modal-header">
+    <h3>Select Recipe</h3>
+    <span class="modal-spout-label" id="modal-spout-label">Spout 1</span>
+    <button class="more-menu-close" onclick="closeRecipeModal()">&times;</button>
   </div>
-
-  <!-- Recent Sessions & Alarms -->
-  <div class="grid-2">
-    <div class="glass-card glass-card-lg">
-      <div class="section-header mb-16">
-        <h3 class="section-title">Recent Brews</h3>
-        <a href="/usage" class="btn btn-ghost btn-sm">View All</a>
-      </div>
-      <div id="recent-brews"></div>
-    </div>
-    <div class="glass-card glass-card-lg">
-      <div class="section-header mb-16">
-        <h3 class="section-title">Active Alarms</h3>
-        <a href="/alarms" class="btn btn-ghost btn-sm">View All</a>
-      </div>
-      <div id="active-alarms"></div>
-    </div>
+  <div class="modal-search">
+    <input type="text" placeholder="Search recipes..." id="modal-recipe-search" oninput="filterModalRecipes(this.value)" />
+  </div>
+  <div class="modal-recipe-list" id="modal-recipe-list">
+    <!-- Rendered by JS -->
   </div>
 </div>

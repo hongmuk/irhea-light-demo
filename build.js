@@ -12,7 +12,7 @@ const DOCS = path.join(SRC, 'docs');
 
 // Pages to render
 const pages = [
-  { page: 'dashboard', title: 'Dashboard', activeNav: 'dashboard', outPath: 'index.html' },
+  { page: 'dashboard', title: 'Spout Control', activeNav: 'dashboard', outPath: 'index.html' },
   { page: 'recipe-list', title: 'Recipes', activeNav: 'recipes', outPath: 'recipes/index.html' },
   { page: 'recipe-detail', title: 'Recipe Detail', activeNav: 'recipes', outDir: 'recipe', idRange: [1, 10] },
   { page: 'recipe-edit', title: 'Edit Recipe', activeNav: 'recipes', outDir: 'recipe-edit', idRange: [1, 10] },

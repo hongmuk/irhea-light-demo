@@ -21,7 +21,7 @@ function loadMock(name) {
 app.get('/', (req, res) => {
   res.render('layout', {
     page: 'dashboard',
-    title: 'Dashboard',
+    title: 'Spout Control',
     activeNav: 'dashboard'
   });
 });
