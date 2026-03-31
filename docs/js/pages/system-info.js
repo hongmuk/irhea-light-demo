@@ -27,7 +27,7 @@
   document.getElementById('network-info').innerHTML = `
     <div class="info-cell"><div class="info-label">IP Address</div><div class="info-value font-mono">${info.network.ip}</div></div>
     <div class="info-cell"><div class="info-label">MAC Address</div><div class="info-value font-mono">${info.network.mac}</div></div>
-    <div class="info-cell"><div class="info-label">IPC Port</div><div class="info-value font-mono">${info.network.ipcPort}</div></div>
+    <div class="info-cell"><div class="info-label">IPC Socket</div><div class="info-value font-mono">${info.network.ipcSocket}</div></div>
     <div class="info-cell"><div class="info-label">Protocol</div><div class="info-value">${info.network.protocol}</div></div>
   `;
 

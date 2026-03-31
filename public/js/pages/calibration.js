@@ -3,7 +3,7 @@
   const spouts = await api('spouts');
   let currentSpout = 0;
 
-  const gainKeys = ['gain1', 'gain2', 'gain3', 'gain4', 'gain5'];
+  const gainKeys = ['pumpGain1', 'pumpGain2', 'pumpGain3', 'pumpGain4', 'pumpGain5'];
 
   function renderGains() {
     const spout = spouts[currentSpout];

@@ -22,6 +22,6 @@
   "timezone": "Asia/Seoul",
   "displayBrightness": 80,
   "soundEnabled": true,
-  "defaultDripper": "V60",
+  "defaultDripper": "Hario",
   "waterLevelAlarmThreshold": 20
 }

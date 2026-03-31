@@ -6,11 +6,11 @@
     "currentRecipe": null,
     "totalBrews": 1247,
     "calibration": {
-      "gain1": 1.000,
-      "gain2": 1.012,
-      "gain3": 0.998,
-      "gain4": 1.005,
-      "gain5": 0.995
+      "pumpGain1": 1.000,
+      "pumpGain2": 1.012,
+      "pumpGain3": 0.998,
+      "pumpGain4": 1.005,
+      "pumpGain5": 0.995
     }
   },
   {
@@ -20,11 +20,11 @@
     "currentRecipe": "Ethiopia Yirgacheffe",
     "totalBrews": 985,
     "calibration": {
-      "gain1": 1.002,
-      "gain2": 1.008,
-      "gain3": 1.001,
-      "gain4": 0.997,
-      "gain5": 1.003
+      "pumpGain1": 1.002,
+      "pumpGain2": 1.008,
+      "pumpGain3": 1.001,
+      "pumpGain4": 0.997,
+      "pumpGain5": 1.003
     }
   },
   {
@@ -34,11 +34,11 @@
     "currentRecipe": null,
     "totalBrews": 1102,
     "calibration": {
-      "gain1": 0.999,
-      "gain2": 1.015,
-      "gain3": 1.003,
-      "gain4": 1.001,
-      "gain5": 0.998
+      "pumpGain1": 0.999,
+      "pumpGain2": 1.015,
+      "pumpGain3": 1.003,
+      "pumpGain4": 1.001,
+      "pumpGain5": 0.998
     }
   },
   {
@@ -46,15 +46,16 @@
     "name": "Spout 4",
     "status": "error",
     "currentRecipe": null,
-    "errorCode": "E-031",
-    "errorMessage": "Flow sensor timeout",
+    "errorCode": "MCP0001",
+    "errorCodeName": "NOZZLE-ERR-01",
+    "errorMessage": "Extraction Timeout Error",
     "totalBrews": 876,
     "calibration": {
-      "gain1": 1.005,
-      "gain2": 0.992,
-      "gain3": 1.010,
-      "gain4": 1.002,
-      "gain5": 0.997
+      "pumpGain1": 1.005,
+      "pumpGain2": 0.992,
+      "pumpGain3": 1.010,
+      "pumpGain4": 1.002,
+      "pumpGain5": 0.997
     }
   },
   {
@@ -64,11 +65,11 @@
     "currentRecipe": null,
     "totalBrews": 1340,
     "calibration": {
-      "gain1": 0.998,
-      "gain2": 1.004,
-      "gain3": 1.001,
-      "gain4": 1.007,
-      "gain5": 1.000
+      "pumpGain1": 0.998,
+      "pumpGain2": 1.004,
+      "pumpGain3": 1.001,
+      "pumpGain4": 1.007,
+      "pumpGain5": 1.000
     }
   }
 ]
