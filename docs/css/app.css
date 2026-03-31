@@ -301,6 +301,11 @@ a:hover { color: var(--accent-gold-light); }
   font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sctrl-badge {
