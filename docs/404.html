@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | Spout Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+  <div class="topbar-brand">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <h1 class="topbar-title">Spout Control</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+    <main class="content-area">
+      <div class="page-content">
+        <!-- Spout Control Panel — Main Screen -->
+<div class="page-content">
+  <!-- Machine Status Bar -->
+  <div class="machine-status-bar mb-16">
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9832;</span>
+      <span class="mstatus-label">Boiler</span>
+      <span class="mstatus-value" id="ms-temp">92.8°C</span>
+    </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9687;</span>
+      <span class="mstatus-label">Water</span>
+      <span class="mstatus-value" id="ms-water">72%</span>
+    </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon">&#9041;</span>
+      <span class="mstatus-label">Pressure</span>
+      <span class="mstatus-value" id="ms-pressure">1.02 bar</span>
+    </div>
+    <div class="mstatus-divider"></div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon" style="color:var(--status-ok);">&#9679;</span>
+      <span class="mstatus-label">Active</span>
+      <span class="mstatus-value" id="ms-active">1 / 5</span>
+    </div>
+    <div class="mstatus-item">
+      <span class="mstatus-icon" style="color:var(--accent-amber);">&#9749;</span>
+      <span class="mstatus-label">Today</span>
+      <span class="mstatus-value" id="ms-today">18</span>
+    </div>
+  </div>
+
+  <!-- 5 Spout Control Cards -->
+  <div class="spout-control-grid" id="spout-control-grid">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+<!-- Recipe Picker Modal -->
+<div class="modal-overlay" id="recipe-modal-overlay" onclick="closeRecipeModal()"></div>
+<div class="modal-panel" id="recipe-modal">
+  <div class="modal-header">
+    <h3>Select Recipe</h3>
+    <span class="modal-spout-label" id="modal-spout-label">Spout 1</span>
+    <button class="more-menu-close" onclick="closeRecipeModal()">&times;</button>
+  </div>
+  <div class="modal-search">
+    <input type="text" placeholder="Search recipes..." id="modal-recipe-search" oninput="filterModalRecipes(this.value)" />
+  </div>
+  <div class="modal-recipe-list" id="modal-recipe-list">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+      </div>
+    </main>
+    <nav class="bottom-nav" id="bottom-nav">
+  <a href="/irhea-light-demo/" class="bnav-item active">
+    <span class="bnav-icon">&#9632;</span>
+    <span class="bnav-label">Control</span>
+  </a>
+  <a href="/irhea-light-demo/recipes" class="bnav-item ">
+    <span class="bnav-icon">&#9749;</span>
+    <span class="bnav-label">Recipes</span>
+  </a>
+  <a href="/irhea-light-demo/brewing" class="bnav-item ">
+    <span class="bnav-icon">&#9200;</span>
+    <span class="bnav-label">Brewing</span>
+  </a>
+  <a href="/irhea-light-demo/favorites" class="bnav-item ">
+    <span class="bnav-icon">&#9733;</span>
+    <span class="bnav-label">Favorites</span>
+  </a>
+  <button class="bnav-item " onclick="toggleMoreMenu()">
+    <span class="bnav-icon">&#8943;</span>
+    <span class="bnav-label">More</span>
+  </button>
+</nav>
+
+  </div>
+
+  <!-- More Menu Overlay -->
+  <div class="more-overlay" id="more-overlay" onclick="closeMoreMenu()"></div>
+  <div class="more-menu" id="more-menu">
+    <div class="more-menu-header">
+      <span>System</span>
+      <button class="more-menu-close" onclick="closeMoreMenu()">&times;</button>
+    </div>
+    <a href="/irhea-light-demo/alarms" class="more-menu-item ">
+      <span class="more-icon">&#9888;</span>
+      <span>Alarms</span>
+      <span class="nav-badge" id="alarm-badge-more">3</span>
+    </a>
+    <a href="/irhea-light-demo/usage" class="more-menu-item ">
+      <span class="more-icon">&#9636;</span>
+      <span>Usage History</span>
+    </a>
+    <a href="/irhea-light-demo/settings" class="more-menu-item ">
+      <span class="more-icon">&#9881;</span>
+      <span>Settings</span>
+    </a>
+    <a href="/irhea-light-demo/calibration" class="more-menu-item ">
+      <span class="more-icon">&#8982;</span>
+      <span>Calibration</span>
+    </a>
+    <a href="/irhea-light-demo/firmware" class="more-menu-item ">
+      <span class="more-icon">&#8635;</span>
+      <span>Firmware</span>
+    </a>
+    <a href="/irhea-light-demo/system-info" class="more-menu-item ">
+      <span class="more-icon">&#9432;</span>
+      <span>System Info</span>
+    </a>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+
+  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <!-- Global JS -->
+  <script src="/irhea-light-demo/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/irhea-light-demo/js/components/gauge.js"></script>
+  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
+  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  <script src="/irhea-light-demo/js/pages/dashboard.js"></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

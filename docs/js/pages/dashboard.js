@@ -62,19 +62,69 @@
               <div class="sctrl-badge sctrl-badge-active">Brewing</div>
             </div>
             <div class="sctrl-body">
-              <!-- Brewing Visual -->
+              <!-- Brewing Visual (SVG) -->
               <div class="sctrl-visual-area">
-                <div class="brew-pour-water"></div>
-                <div class="brew-dripper"></div>
-                <div class="brew-steam-wrap">
-                  <div class="steam-line"></div>
-                  <div class="steam-line"></div>
-                  <div class="steam-line"></div>
-                </div>
-                <div class="brew-stream"></div>
-                <div class="brew-server">
-                  <div class="brew-liquid" id="brew-liquid-${s.id}" style="height:${brew.progress}%"></div>
-                </div>
+                <svg viewBox="0 0 150 150" class="sc-brew-svg">
+                  <defs>
+                    <linearGradient id="scGrad${s.id}" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#4a342e"/>
+                      <stop offset="100%" stop-color="#2c1e17"/>
+                    </linearGradient>
+                    <clipPath id="scClip${s.id}">
+                      <path d="M69,109 L64,133 Q64,139 71,139 L99,139 Q106,139 106,133 L101,109 Z"/>
+                    </clipPath>
+                  </defs>
+                  <!-- Base -->
+                  <rect x="15" y="140" width="120" height="8" rx="3" fill="#d4b896"/>
+                  <rect x="15" y="140" width="120" height="3" rx="1.5" fill="#c5a059" opacity="0.25"/>
+                  <!-- Stand pole -->
+                  <rect x="30" y="20" width="5" height="120" rx="2" fill="#8e8e93"/>
+                  <rect x="31" y="20" width="1.5" height="120" rx="0.75" fill="rgba(255,255,255,0.18)"/>
+                  <rect x="25" y="14" width="15" height="10" rx="5" fill="#71717a"/>
+                  <!-- Arm -->
+                  <rect x="35" y="50" width="50" height="4" rx="2" fill="#8e8e93"/>
+                  <!-- Clamp -->
+                  <circle cx="85" cy="52" r="6" fill="#5c4a3a"/>
+                  <circle cx="85" cy="52" r="2.5" fill="#a09080"/>
+                  <!-- Support rod -->
+                  <rect x="83" y="58" width="4" height="8" rx="1.5" fill="#8e8e93"/>
+                  <!-- Dripper ring -->
+                  <ellipse cx="85" cy="66" rx="28" ry="3" fill="none" stroke="#8e8e93" stroke-width="1.5"/>
+                  <!-- V60 Dripper -->
+                  <rect x="56" y="63" width="58" height="7" rx="2" fill="#5c4a3a"/>
+                  <polygon points="58,68 112,68 96,100 74,100" fill="#d4b896"/>
+                  <polygon points="62,72 108,72 95,98 75,98" fill="#c5a059" opacity="0.1"/>
+                  <line x1="78" y1="72" x2="79" y2="96" stroke="#c5a059" stroke-width="0.5" opacity="0.3"/>
+                  <line x1="86" y1="72" x2="85" y2="96" stroke="#c5a059" stroke-width="0.5" opacity="0.3"/>
+                  <line x1="94" y1="72" x2="91" y2="96" stroke="#c5a059" stroke-width="0.5" opacity="0.3"/>
+                  <!-- Dripper tip -->
+                  <rect x="82" y="100" width="6" height="5" rx="2" fill="#3c2a21"/>
+                  <!-- Water spirals -->
+                  <g class="bp-spirals-active">
+                    <ellipse class="bp-spiral" cx="85" cy="80" rx="10" ry="3"/>
+                    <ellipse class="bp-spiral bp-spiral-delay" cx="85" cy="80" rx="16" ry="4"/>
+                  </g>
+                  <!-- Server / Carafe -->
+                  <path d="M68,108 L63,133 Q63,140 70,140 L100,140 Q107,140 107,133 L102,108 Z"
+                        fill="rgba(255,255,255,0.35)" stroke="rgba(142,142,147,0.35)" stroke-width="1.5"/>
+                  <line x1="66" y1="112" x2="65" y2="130" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-linecap="round"/>
+                  <path d="M107,114 C118,116 118,132 107,134" fill="none" stroke="rgba(142,142,147,0.4)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M68,109 L62,104" fill="none" stroke="rgba(142,142,147,0.35)" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Coffee liquid -->
+                  <g clip-path="url(#scClip${s.id})">
+                    <rect id="sc-liquid-${s.id}" x="62" y="${139 - (brew.progress / 100) * 30}" width="46" height="${(brew.progress / 100) * 30}" fill="url(#scGrad${s.id})"/>
+                    <ellipse id="sc-wave-${s.id}" cx="85" cy="${139 - (brew.progress / 100) * 30}" rx="23" ry="2" fill="#5a3e30" opacity="${brew.progress > 3 ? 0.5 : 0}"/>
+                  </g>
+                  <!-- Stream -->
+                  <g class="bp-stream-active">
+                    <rect x="84" y="105" width="2" height="3" rx="1" fill="#4a342e" opacity="0.85"/>
+                    <circle class="bp-drip" cx="85" cy="108" r="1.5" fill="#4a342e"/>
+                  </g>
+                  <!-- Steam -->
+                  <path class="bp-steam-line" d="M64,104 Q62,96 64,88" fill="none" stroke="rgba(197,160,89,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+                  <path class="bp-steam-line bp-steam-d1" d="M70,106 Q68,96 70,86" fill="none" stroke="rgba(197,160,89,0.12)" stroke-width="1.5" stroke-linecap="round"/>
+                  <path class="bp-steam-line bp-steam-d2" d="M58,102 Q56,94 58,86" fill="none" stroke="rgba(197,160,89,0.1)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
               </div>
               
               <div class="sctrl-recipe-name">${brew.recipe.name}</div>
@@ -234,9 +284,18 @@
       if (waterEl) waterEl.textContent = `${Math.floor((brew.progress / 100) * totalWater)} / ${totalWater} ml`;
       if (tempEl) tempEl.textContent = `${(brew.recipe.waterTemp + (Math.random() - 0.5) * 1).toFixed(1)}°C`;
 
-      // Update liquid height visual
-      const liquidEl = document.getElementById(`brew-liquid-${spoutId}`);
-      if (liquidEl) liquidEl.style.height = `${brew.progress}%`;
+      // Update SVG liquid level
+      const liquidEl = document.getElementById(`sc-liquid-${spoutId}`);
+      const waveEl = document.getElementById(`sc-wave-${spoutId}`);
+      if (liquidEl) {
+        const h = (brew.progress / 100) * 30;
+        liquidEl.setAttribute('y', 139 - h);
+        liquidEl.setAttribute('height', h);
+        if (waveEl) {
+          waveEl.setAttribute('cy', 139 - h);
+          waveEl.setAttribute('opacity', h > 2 ? '0.5' : '0');
+        }
+      }
 
       // Update progress bar
       const card = document.querySelector(`.spout-ctrl-card:nth-child(${spoutId})`);

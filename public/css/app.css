@@ -973,6 +973,7 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 
 /* ── Brew Page SVG Hand-Drip Illustration ────────────── */
 .brew-page-svg { display: block; margin: 0 auto; }
+.sc-brew-svg { display: block; height: 150px; width: auto; margin: 0 auto; }
 
 /* Water spiral rings */
 .bp-spiral {
