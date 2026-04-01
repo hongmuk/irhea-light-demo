@@ -2,8 +2,99 @@
 <div class="page-content">
   <div class="flex items-center justify-center" style="min-height:calc(100vh - 140px);">
     <div style="text-align:center;max-width:600px;width:100%;">
-      <!-- Progress Ring -->
-      <div id="brew-ring" style="margin-bottom:32px;"></div>
+      <!-- Hand-Drip Coffee Illustration -->
+      <div id="brew-illustration" style="margin-bottom:24px;">
+        <svg viewBox="0 0 300 370" width="300" height="370" class="brew-page-svg">
+          <defs>
+            <linearGradient id="bpCoffeeGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a342e"/>
+              <stop offset="100%" stop-color="#2c1e17"/>
+            </linearGradient>
+            <clipPath id="bpServerClip">
+              <path d="M127,240 L119,330 Q119,339 129,339 L187,339 Q197,339 197,330 L189,240 Z"/>
+            </clipPath>
+          </defs>
+
+          <!-- Base platform -->
+          <rect x="40" y="340" width="220" height="18" rx="4" fill="#d4b896"/>
+          <rect x="40" y="340" width="220" height="5" rx="2" fill="#c5a059" opacity="0.25"/>
+
+          <!-- Stand pole -->
+          <rect x="70" y="52" width="8" height="288" rx="3" fill="#8e8e93"/>
+          <rect x="71.5" y="52" width="2.5" height="288" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <rect x="62" y="44" width="24" height="14" rx="7" fill="#71717a"/>
+
+          <!-- Horizontal arm -->
+          <rect x="78" y="128" width="80" height="6" rx="2" fill="#8e8e93"/>
+          <rect x="78" y="128" width="80" height="2" rx="1" fill="rgba(255,255,255,0.15)"/>
+
+          <!-- Clamp -->
+          <circle cx="158" cy="131" r="10" fill="#5c4a3a"/>
+          <circle cx="158" cy="131" r="4" fill="#a09080"/>
+          <circle cx="158" cy="131" r="1.5" fill="#71717a"/>
+
+          <!-- Dripper support rod -->
+          <rect x="155" y="141" width="6" height="14" rx="2" fill="#8e8e93"/>
+
+          <!-- Dripper ring (wire holder) -->
+          <ellipse cx="158" cy="156" rx="44" ry="5" fill="none" stroke="#8e8e93" stroke-width="2.5"/>
+
+          <!-- V60 Dripper -->
+          <rect x="113" y="153" width="90" height="10" rx="3" fill="#5c4a3a"/>
+          <polygon points="116,158 200,158 178,216 138,216" fill="#d4b896"/>
+          <polygon points="122,164 194,164 176,213 140,213" fill="#c5a059" opacity="0.12"/>
+          <!-- Ridges -->
+          <line x1="142" y1="164" x2="148" y2="210" stroke="#c5a059" stroke-width="0.6" opacity="0.35"/>
+          <line x1="152" y1="164" x2="153" y2="210" stroke="#c5a059" stroke-width="0.6" opacity="0.35"/>
+          <line x1="162" y1="164" x2="158" y2="210" stroke="#c5a059" stroke-width="0.6" opacity="0.35"/>
+          <line x1="172" y1="164" x2="163" y2="210" stroke="#c5a059" stroke-width="0.6" opacity="0.35"/>
+          <line x1="182" y1="164" x2="168" y2="210" stroke="#c5a059" stroke-width="0.6" opacity="0.35"/>
+          <!-- Dripper tip -->
+          <rect x="153" y="216" width="10" height="7" rx="3" fill="#3c2a21"/>
+
+          <!-- Water spiral in dripper -->
+          <g id="bp-spirals" class="bp-spirals-active">
+            <ellipse class="bp-spiral" cx="158" cy="178" rx="14" ry="5"/>
+            <ellipse class="bp-spiral bp-spiral-delay" cx="158" cy="178" rx="22" ry="7"/>
+          </g>
+
+          <!-- Server / Carafe -->
+          <path d="M126,238 L118,330 Q118,340 128,340 L188,340 Q198,340 198,330 L190,238 Z"
+                fill="rgba(255,255,255,0.35)" stroke="rgba(142,142,147,0.35)" stroke-width="2"/>
+          <line x1="124" y1="248" x2="120" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Handle -->
+          <path d="M198,262 C216,264 216,314 198,316" fill="none" stroke="rgba(142,142,147,0.4)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Spout -->
+          <path d="M126,240 L116,230" fill="none" stroke="rgba(142,142,147,0.35)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Coffee liquid -->
+          <g clip-path="url(#bpServerClip)">
+            <rect id="bp-liquid" x="116" y="339" width="84" height="0" fill="url(#bpCoffeeGrad)"/>
+            <ellipse id="bp-liquid-wave" cx="158" cy="339" rx="42" ry="3" fill="#5a3e30" opacity="0"/>
+          </g>
+
+          <!-- Stream (from dripper to server) -->
+          <g id="bp-stream" class="bp-stream-active">
+            <rect x="157" y="223" width="3" height="15" rx="1.5" fill="#4a342e" opacity="0.85"/>
+            <rect x="156" y="223" width="5" height="15" rx="2.5" fill="rgba(74,52,46,0.2)"/>
+            <circle class="bp-drip" cx="158.5" cy="238" r="2.5" fill="#4a342e"/>
+          </g>
+
+          <!-- Steam lines -->
+          <g id="bp-steam">
+            <path class="bp-steam-line" d="M118,230 Q114,216 118,202" fill="none" stroke="rgba(197,160,89,0.15)" stroke-width="2" stroke-linecap="round"/>
+            <path class="bp-steam-line bp-steam-d1" d="M126,232 Q122,216 126,200" fill="none" stroke="rgba(197,160,89,0.12)" stroke-width="2" stroke-linecap="round"/>
+            <path class="bp-steam-line bp-steam-d2" d="M110,228 Q106,214 110,200" fill="none" stroke="rgba(197,160,89,0.1)" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <!-- Progress bar below illustration -->
+        <div style="display:flex;align-items:center;gap:12px;max-width:280px;margin:8px auto 0;">
+          <div style="flex:1;height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden;">
+            <div id="bp-progress-bar" style="width:0%;height:100%;background:linear-gradient(90deg,var(--accent-noble),var(--accent-gold-light));transition:width 0.5s ease-out;border-radius:3px;"></div>
+          </div>
+          <span id="bp-progress-pct" style="font-size:16px;font-weight:700;color:var(--accent-noble);min-width:45px;text-align:right;font-variant-numeric:tabular-nums;">0%</span>
+        </div>
+      </div>
 
       <!-- Current Stage Info -->
       <div class="glass-card glass-card-lg mb-24" style="text-align:left;">
