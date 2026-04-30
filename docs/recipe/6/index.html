@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="/irhea-light-demo/css/app.css">
+<link rel="stylesheet" href="/css/app.css">
 
 </head>
 <body>
@@ -32,7 +32,7 @@
         <!-- Recipe Detail Page -->
 <div class="page-content">
   <div class="flex items-center gap-16 mb-24">
-    <a href="/irhea-light-demo/recipes" class="btn btn-ghost btn-icon">&#8592;</a>
+    <a href="/recipes" class="btn btn-ghost btn-icon">&#8592;</a>
     <div style="flex:1;">
       <h2 class="section-title" id="recipe-name">Loading...</h2>
       <p class="section-subtitle" id="recipe-dripper"></p>
@@ -85,19 +85,19 @@
       </div>
     </main>
     <nav class="bottom-nav" id="bottom-nav">
-  <a href="/irhea-light-demo/" class="bnav-item ">
+  <a href="/" class="bnav-item ">
     <span class="bnav-icon">&#9632;</span>
     <span class="bnav-label">Control</span>
   </a>
-  <a href="/irhea-light-demo/recipes" class="bnav-item active">
+  <a href="/recipes" class="bnav-item active">
     <span class="bnav-icon">&#9749;</span>
     <span class="bnav-label">Recipes</span>
   </a>
-  <a href="/irhea-light-demo/brewing" class="bnav-item ">
+  <a href="/brewing" class="bnav-item ">
     <span class="bnav-icon">&#9200;</span>
     <span class="bnav-label">Brewing</span>
   </a>
-  <a href="/irhea-light-demo/favorites" class="bnav-item ">
+  <a href="/favorites" class="bnav-item ">
     <span class="bnav-icon">&#9733;</span>
     <span class="bnav-label">Favorites</span>
   </a>
@@ -116,28 +116,28 @@
       <span>System</span>
       <button class="more-menu-close" onclick="closeMoreMenu()">&times;</button>
     </div>
-    <a href="/irhea-light-demo/alarms" class="more-menu-item ">
+    <a href="/alarms" class="more-menu-item ">
       <span class="more-icon">&#9888;</span>
       <span>Alarms</span>
       <span class="nav-badge" id="alarm-badge-more">3</span>
     </a>
-    <a href="/irhea-light-demo/usage" class="more-menu-item ">
+    <a href="/usage" class="more-menu-item ">
       <span class="more-icon">&#9636;</span>
       <span>Usage History</span>
     </a>
-    <a href="/irhea-light-demo/settings" class="more-menu-item ">
+    <a href="/settings" class="more-menu-item ">
       <span class="more-icon">&#9881;</span>
       <span>Settings</span>
     </a>
-    <a href="/irhea-light-demo/calibration" class="more-menu-item ">
+    <a href="/calibration" class="more-menu-item ">
       <span class="more-icon">&#8982;</span>
       <span>Calibration</span>
     </a>
-    <a href="/irhea-light-demo/firmware" class="more-menu-item ">
+    <a href="/firmware" class="more-menu-item ">
       <span class="more-icon">&#8635;</span>
       <span>Firmware</span>
     </a>
-    <a href="/irhea-light-demo/system-info" class="more-menu-item ">
+    <a href="/system-info" class="more-menu-item ">
       <span class="more-icon">&#9432;</span>
       <span>System Info</span>
     </a>
@@ -146,19 +146,19 @@
   <div class="toast-container" id="toast-container"></div>
 
 
-  <script>window.BASE_PATH = "/irhea-light-demo";</script>
+  <script>window.BASE_PATH = "";</script>
   <!-- Global JS -->
-  <script src="/irhea-light-demo/js/app.js"></script>
+  <script src="/js/app.js"></script>
 
   <!-- Component JS -->
-  <script src="/irhea-light-demo/js/components/gauge.js"></script>
-  <script src="/irhea-light-demo/js/components/progress-ring.js"></script>
-  <script src="/irhea-light-demo/js/components/timeline.js"></script>
+  <script src="/js/components/gauge.js"></script>
+  <script src="/js/components/progress-ring.js"></script>
+  <script src="/js/components/timeline.js"></script>
 
   <!-- Page JS -->
   
   
-  <script src="/irhea-light-demo/js/pages/recipe-detail.js"></script>
+  <script src="/js/pages/recipe-detail.js"></script>
   
   
   
