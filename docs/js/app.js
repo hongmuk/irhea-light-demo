@@ -83,20 +83,15 @@ const Toast = {
 
 // ── API Helper ─────────────────────────────────────────
 async function api(endpoint) {
-  if (BASE_PATH) {
-    // Static mode (GitHub Pages): fetch from JSON files
-    const recipeMatch = endpoint.match(/^recipes\/(\d+)$/);
-    if (recipeMatch) {
-      const res = await fetch(`${BASE_PATH}/api/recipes.json`);
-      const recipes = await res.json();
-      return recipes.find(r => r.id === parseInt(recipeMatch[1]));
-    }
-    const res = await fetch(`${BASE_PATH}/api/${endpoint}.json`);
+  const base = BASE_PATH || '';
+  const recipeMatch = endpoint.match(/^recipes\/(\d+)$/);
+  if (recipeMatch) {
+    const res = await fetch(`${base}/api/recipes.json`);
     if (!res.ok) throw new Error(`API error: ${res.status}`);
-    return res.json();
+    const recipes = await res.json();
+    return recipes.find(r => r.id === parseInt(recipeMatch[1]));
   }
-  // Express mode: fetch from server API
-  const res = await fetch(`/api/${endpoint}`);
+  const res = await fetch(`${base}/api/${endpoint}.json`);
   if (!res.ok) throw new Error(`API error: ${res.status}`);
   return res.json();
 }
