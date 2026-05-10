@@ -83,15 +83,18 @@ const Toast = {
 
 // ── API Helper ─────────────────────────────────────────
 async function api(endpoint) {
-  if (BASE_PATH) {
-    // Static mode (GitHub Pages): fetch from JSON files
+  // Static mode is signalled by window.STATIC_MODE (set by build.js) OR by
+  // BASE_PATH being a non-empty subpath (GitHub Pages style).
+  const staticMode = (typeof STATIC_MODE !== 'undefined' && STATIC_MODE) || !!BASE_PATH;
+  if (staticMode) {
+    const prefix = BASE_PATH || '';
     const recipeMatch = endpoint.match(/^recipes\/(\d+)$/);
     if (recipeMatch) {
-      const res = await fetch(`${BASE_PATH}/api/recipes.json`);
+      const res = await fetch(`${prefix}/api/recipes.json`);
       const recipes = await res.json();
       return recipes.find(r => r.id === parseInt(recipeMatch[1]));
     }
-    const res = await fetch(`${BASE_PATH}/api/${endpoint}.json`);
+    const res = await fetch(`${prefix}/api/${endpoint}.json`);
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     return res.json();
   }
@@ -100,6 +103,17 @@ async function api(endpoint) {
   if (!res.ok) throw new Error(`API error: ${res.status}`);
   return res.json();
 }
+
+// Helper for IR pages to use static-mode-aware fetch.
+// Use as: irFetch('spouts'), irFetch('general-config').
+window.irFetch = function (endpoint) {
+  const staticMode = (typeof STATIC_MODE !== 'undefined' && STATIC_MODE) || !!BASE_PATH;
+  if (staticMode) {
+    const prefix = BASE_PATH || '';
+    return fetch(`${prefix}/api/${endpoint.replace(/^\/?api\//, '')}.json`);
+  }
+  return fetch(endpoint.startsWith('/') ? endpoint : `/api/${endpoint}`);
+};
 
 // ── Format Helpers ─────────────────────────────────────
 function formatTemp(val) {

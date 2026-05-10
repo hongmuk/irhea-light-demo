@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iRHEA-Light | 공장 초기화</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/theme-irhea.css">
+
+  <script> window.BASE_PATH = ""; window.STATIC_MODE = true; (function(){ var orig = window.fetch; window.fetch = function(input, init){ try { var url = (typeof input === 'string') ? input : (input && input.url) || ''; var method = (init && init.method ? init.method : (input && input.method) || 'GET').toUpperCase(); if (method === 'GET' && /^\/api\//.test(url) && !/\.json(\?|$)/.test(url)) { input = (window.BASE_PATH || '') + url.replace(/^\/api\//, '/api/') + '.json'; } } catch(e) {} return orig.call(this, input, init); }; })(); </script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+  <div class="topbar-brand">
+    <div class="logo-icon">iR</div>
+    <span class="logo-text">iRHEA-Light</span>
+  </div>
+  <h1 class="topbar-title">공장 초기화</h1>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-status">
+    <span class="status-dot"></span>
+    <span>Connected</span>
+  </div>
+  <div class="topbar-clock" id="topbar-clock"></div>
+</header>
+
+    <main class="content-area">
+      <div class="page-content">
+        
+
+
+
+
+<div class="ir-shell">
+  <div class="ir-tabs">
+    <a class="ir-tab "     href="/settings/general">설정</a>
+    <a class="ir-tab "      href="/settings/backup">백업/복구</a>
+    <a class="ir-tab is-active" href="/settings/engineering">엔지니어링<br>메뉴</a>
+    <a class="ir-tab "    href="/settings/firmware">펌웨어<br>업그레이드</a>
+
+    <div style="flex:1;"></div>
+
+    <div class="ir-action-row" style="align-self:flex-start;margin-top:0;">
+      
+      <a class="ir-btn" href="/main">복귀</a>
+    </div>
+  </div>
+
+  <div class="ir-divider"></div>
+
+  <div class="ir-content" style="padding-top:0;">
+
+
+  <div class="ir-row" style="gap:24px;flex:1;align-items:flex-start;">
+
+    <aside class="ir-side-menu">
+      <a class="ir-tab is-active" href="/settings/engineering/factory-reset">공장초기화</a>
+      <a class="ir-tab" href="/settings/engineering/connection">장비 연결 설정</a>
+    </aside>
+
+    <section class="ir-grow ir-center" style="min-height:420px;">
+      <div class="ir-card" style="max-width:520px;width:100%;padding:28px 32px;">
+        <div style="text-align:center;font-family:var(--ir-font-display);font-style:italic;font-size:22px;margin-bottom:24px;color:var(--ir-fg);">공장 <em style="color:var(--ir-orange-deep);">초기화.</em></div>
+
+        <div id="fr-list" style="display:flex;flex-direction:column;gap:14px;font-size:16px;font-weight:600;">
+          
+          
+            <label class="fr-row" data-cat="log" style="display:flex;align-items:center;gap:18px;cursor:pointer;">
+              <span style="flex:1;">1. 로그 &amp; 오류 데이터</span>
+              <span class="fr-dot" data-on="true" style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ir-line-strong);background:var(--ir-status-ok);"></span>
+            </label>
+          
+            <label class="fr-row" data-cat="recipe" style="display:flex;align-items:center;gap:18px;cursor:pointer;">
+              <span style="flex:1;">2. 레시피 데이터</span>
+              <span class="fr-dot" data-on="false" style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ir-line-strong);background:transparent;"></span>
+            </label>
+          
+            <label class="fr-row" data-cat="user" style="display:flex;align-items:center;gap:18px;cursor:pointer;">
+              <span style="flex:1;">3. 사용자 데이터</span>
+              <span class="fr-dot" data-on="true" style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ir-line-strong);background:var(--ir-status-ok);"></span>
+            </label>
+          
+            <label class="fr-row" data-cat="device" style="display:flex;align-items:center;gap:18px;cursor:pointer;">
+              <span style="flex:1;">4. 장비 설정 데이터</span>
+              <span class="fr-dot" data-on="false" style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ir-line-strong);background:transparent;"></span>
+            </label>
+          
+            <label class="fr-row" data-cat="security" style="display:flex;align-items:center;gap:18px;cursor:pointer;">
+              <span style="flex:1;">5. 보안 데이터</span>
+              <span class="fr-dot" data-on="true" style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ir-line-strong);background:var(--ir-status-ok);"></span>
+            </label>
+          
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:24px;gap:12px;">
+          <button class="ir-btn ir-btn-primary" id="fr-run">실행</button>
+          <div class="ir-progress-ring" id="fr-progress" style="display:none;">20%</div>
+          <button class="ir-btn" id="fr-cancel">취소</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  </div>
+</div>
+
+
+<script>
+(function () {
+  if (location.search.indexOf('dev=1') >= 0) sessionStorage.setItem('ir-admin-ok', '1');
+  if (sessionStorage.getItem('ir-admin-ok') !== '1') {
+    window.location.href = '/settings/engineering';
+    return;
+  }
+
+  // Toggle dot rows
+  document.querySelectorAll('.fr-row').forEach(function (row) {
+    row.addEventListener('click', function () {
+      var dot = row.querySelector('.fr-dot');
+      var on = dot.dataset.on === 'true';
+      dot.dataset.on = (!on).toString();
+      dot.style.background = !on ? 'var(--ir-status-ok)' : 'transparent';
+    });
+  });
+
+  document.getElementById('fr-cancel').addEventListener('click', function () {
+    window.location.href = '/settings/engineering';
+  });
+
+  document.getElementById('fr-run').addEventListener('click', function () {
+    var cats = [];
+    document.querySelectorAll('.fr-row').forEach(function (row) {
+      if (row.querySelector('.fr-dot').dataset.on === 'true') cats.push(row.dataset.cat);
+    });
+    if (cats.length === 0) {
+      window.IRModal.info({ body: '항목을 선택하세요', bodyClass: 'is-error' });
+      return;
+    }
+    window.IRModal.confirm({
+      body: '복구불가<br>진행하시겠습니까?',
+      bodyClass: 'is-error',
+      onOk: function () {
+        var ring = document.getElementById('fr-progress');
+        ring.style.display = 'inline-flex';
+        ring.textContent = '0%';
+        var p = 0;
+        var iv = setInterval(function () {
+          p += 8;
+          ring.textContent = Math.min(p, 100) + '%';
+          if (p >= 100) {
+            clearInterval(iv);
+            fetch('/api/factory-reset', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ categories: cats })
+            }).then(function () {
+              window.IRModal.info({ body: '초기화 완료' });
+              ring.style.display = 'none';
+            });
+          }
+        }, 120);
+      }
+    });
+  });
+})();
+</script>
+
+      </div>
+    </main>
+    <nav class="bottom-nav" id="bottom-nav">
+  <a href="/" class="bnav-item ">
+    <span class="bnav-icon">&#9632;</span>
+    <span class="bnav-label">Control</span>
+  </a>
+  <a href="/recipes" class="bnav-item ">
+    <span class="bnav-icon">&#9749;</span>
+    <span class="bnav-label">Recipes</span>
+  </a>
+  <a href="/brewing" class="bnav-item ">
+    <span class="bnav-icon">&#9200;</span>
+    <span class="bnav-label">Brewing</span>
+  </a>
+  <a href="/favorites" class="bnav-item ">
+    <span class="bnav-icon">&#9733;</span>
+    <span class="bnav-label">Favorites</span>
+  </a>
+  <button class="bnav-item " onclick="toggleMoreMenu()">
+    <span class="bnav-icon">&#8943;</span>
+    <span class="bnav-label">More</span>
+  </button>
+</nav>
+
+  </div>
+
+  <!-- More Menu Overlay -->
+  <div class="more-overlay" id="more-overlay" onclick="closeMoreMenu()"></div>
+  <div class="more-menu" id="more-menu">
+    <div class="more-menu-header">
+      <span>System</span>
+      <button class="more-menu-close" onclick="closeMoreMenu()">&times;</button>
+    </div>
+    <a href="/alarms" class="more-menu-item ">
+      <span class="more-icon">&#9888;</span>
+      <span>Alarms</span>
+      <span class="nav-badge" id="alarm-badge-more">3</span>
+    </a>
+    <a href="/usage" class="more-menu-item ">
+      <span class="more-icon">&#9636;</span>
+      <span>Usage History</span>
+    </a>
+    <a href="/settings" class="more-menu-item ">
+      <span class="more-icon">&#9881;</span>
+      <span>Settings</span>
+    </a>
+    <a href="/calibration" class="more-menu-item ">
+      <span class="more-icon">&#8982;</span>
+      <span>Calibration</span>
+    </a>
+    <a href="/firmware" class="more-menu-item ">
+      <span class="more-icon">&#8635;</span>
+      <span>Firmware</span>
+    </a>
+    <a href="/system-info" class="more-menu-item ">
+      <span class="more-icon">&#9432;</span>
+      <span>System Info</span>
+    </a>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!--
+  iRHEA-Light — 표준 알림 모달 컨테이너 + 8 사전정의 알림.
+  공통 트리거: window.IRModal.open(id) / window.IRModal.confirm({...})
+  표준 ID:
+    alert-password-error
+    alert-extract-press
+    alert-shutdown
+    alert-shutdown-done
+    confirm-firmware
+    confirm-connection-change
+    confirm-connection-fail
+    confirm-irreversible
+  ad-hoc 모달은 confirm({title, body, ok, cancel, onOk, onCancel}) 사용.
+-->
+
+<div class="ir-modal-overlay" id="ir-modal-overlay" data-modal-root>
+  <div class="ir-modal" id="ir-modal" role="dialog" aria-modal="true" aria-labelledby="ir-modal-title">
+    <div class="ir-modal-header" id="ir-modal-title">알림</div>
+    <div class="ir-modal-body" id="ir-modal-body">메시지</div>
+    <div class="ir-modal-actions" id="ir-modal-actions"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Standard preset alerts — name, body, buttons[], optional class
+  var PRESETS = {
+    'alert-password-error':     { body: '암호 오류',                                       bodyClass: 'is-error', buttons: [{ label: 'X' }] },
+    'alert-extract-press':      { body: '추출 진행<br>추출구의 버튼을 눌러주세요',         buttons: [{ label: 'X' }] },
+    'alert-shutdown':           { body: '장비를 종료합니다.<br>기다려 주세요',             buttons: [] },
+    'alert-shutdown-done':      { body: '장비 종료 완료<br>전원 스위치를 꺼주세요.',        buttons: [{ label: '확인', primary: true }] },
+    'confirm-firmware':         { body: '펌웨어를 업그레이드 합니다.',                      buttons: [{ label: 'O', primary: true, value: 'ok' }, { label: 'X', value: 'cancel' }] },
+    'confirm-connection-change':{ body: '장치 연결 설정을 변경 합니다.',                    buttons: [{ label: 'O', primary: true, value: 'ok' }, { label: 'X', value: 'cancel' }] },
+    'confirm-connection-fail':  { body: '연결 실패<br>재시도?',                              bodyClass: 'is-error', buttons: [{ label: 'O', primary: true, value: 'ok' }, { label: 'X', value: 'cancel' }] },
+    'confirm-irreversible':     { body: '복구불가<br>진행하시겠습니까?',                    bodyClass: 'is-error', buttons: [{ label: 'O', primary: true, value: 'ok' }, { label: 'X', value: 'cancel' }] }
+  };
+
+  function el(id) { return document.getElementById(id); }
+
+  function renderActions(buttons, onClick) {
+    var actions = el('ir-modal-actions');
+    actions.innerHTML = '';
+    buttons.forEach(function (b) {
+      var btn = document.createElement('button');
+      btn.className = 'ir-modal-btn' + (b.primary ? ' is-primary' : '');
+      btn.textContent = b.label;
+      btn.dataset.value = b.value || b.label;
+      btn.addEventListener('click', function () { onClick(b.value || b.label); });
+      actions.appendChild(btn);
+    });
+  }
+
+  function openWith(opts) {
+    var overlay = el('ir-modal-overlay');
+    el('ir-modal-title').textContent = opts.title || '알림';
+    var body = el('ir-modal-body');
+    body.innerHTML = opts.body || '';
+    body.className = 'ir-modal-body' + (opts.bodyClass ? ' ' + opts.bodyClass : '');
+    renderActions(opts.buttons || [{ label: '확인', primary: true }], function (val) {
+      overlay.classList.remove('is-open');
+      if (typeof opts.onClose === 'function') opts.onClose(val);
+    });
+    overlay.classList.add('is-open');
+  }
+
+  window.IRModal = {
+    open: function (id, onClose) {
+      var p = PRESETS[id];
+      if (!p) {
+        console.warn('IRModal: unknown preset', id);
+        return;
+      }
+      openWith({
+        title: p.title || '알림',
+        body: p.body,
+        bodyClass: p.bodyClass,
+        buttons: p.buttons,
+        onClose: onClose
+      });
+    },
+    confirm: function (opts) {
+      // opts: { title, body, bodyClass, ok = 'O', cancel = 'X', onOk, onCancel }
+      var buttons = [
+        { label: opts.ok || 'O', primary: true, value: 'ok' },
+        { label: opts.cancel || 'X', value: 'cancel' }
+      ];
+      openWith({
+        title: opts.title || '알림',
+        body: opts.body || '',
+        bodyClass: opts.bodyClass,
+        buttons: buttons,
+        onClose: function (v) {
+          if (v === 'ok' && typeof opts.onOk === 'function') opts.onOk();
+          if (v === 'cancel' && typeof opts.onCancel === 'function') opts.onCancel();
+        }
+      });
+    },
+    info: function (opts) {
+      openWith({
+        title: opts.title || '알림',
+        body: opts.body || '',
+        bodyClass: opts.bodyClass,
+        buttons: opts.buttons || [{ label: '확인', primary: true }],
+        onClose: opts.onClose
+      });
+    },
+    close: function () {
+      var overlay = el('ir-modal-overlay');
+      if (overlay) overlay.classList.remove('is-open');
+    }
+  };
+
+  // Close on overlay click (only when click target is overlay itself)
+  document.addEventListener('click', function (ev) {
+    var overlay = el('ir-modal-overlay');
+    if (!overlay || !overlay.classList.contains('is-open')) return;
+    if (ev.target === overlay) {
+      // Don't auto-close if there are no buttons (forced wait modal)
+      var hasButtons = el('ir-modal-actions').children.length > 0;
+      if (hasButtons) overlay.classList.remove('is-open');
+    }
+  });
+})();
+</script>
+
+
+  <!-- Global JS -->
+  <script src="/js/app.js"></script>
+
+  <!-- Component JS -->
+  <script src="/js/components/gauge.js"></script>
+  <script src="/js/components/progress-ring.js"></script>
+  <script src="/js/components/timeline.js"></script>
+
+  <!-- Page JS -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

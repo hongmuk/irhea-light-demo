@@ -6,7 +6,10 @@ const ejs = require('ejs');
 const fs = require('fs');
 const path = require('path');
 
-const BASE_PATH = process.env.BASE_PATH || '/irhea-light-demo';
+// '/irhea-light-demo' for GitHub Pages, '' (or '/') for board / Apache root.
+let BASE_PATH = process.env.BASE_PATH;
+if (BASE_PATH === undefined) BASE_PATH = '/irhea-light-demo';
+if (BASE_PATH === '/') BASE_PATH = '';   // collapse '/' to '' so /css doesn't become //css
 const SRC = __dirname;
 const DOCS = path.join(SRC, 'docs');
 
@@ -25,6 +28,18 @@ const pages = [
   { page: 'firmware', title: 'Firmware', activeNav: 'firmware', outPath: 'firmware/index.html' },
   { page: 'system-info', title: 'System Info', activeNav: 'system-info', outPath: 'system-info/index.html' },
   { page: 'usage', title: 'Usage History', activeNav: 'usage', outPath: 'usage/index.html' },
+  // IR (spec V0.9) screens
+  { page: 'setup',                title: '최초 설정',         activeNav: 'setup',                outPath: 'setup/index.html' },
+  { page: 'connect',              title: '장치 연결',         activeNav: 'connect',              outPath: 'connect/index.html' },
+  { page: 'main',                 title: '메인',              activeNav: 'main',                 outPath: 'main/index.html' },
+  { page: 'settings-general',     title: '설정',              activeNav: 'general',              outPath: 'settings/general/index.html' },
+  { page: 'settings-backup',      title: 'USB 백업/복구',     activeNav: 'backup',               outPath: 'settings/backup/index.html' },
+  { page: 'settings-engineering', title: '엔지니어링',        activeNav: 'engineering',          outPath: 'settings/engineering/index.html' },
+  { page: 'factory-reset',        title: '공장 초기화',       activeNav: 'engineering',          outPath: 'settings/engineering/factory-reset/index.html' },
+  { page: 'connection-config',    title: '연결 설정',         activeNav: 'engineering',          outPath: 'settings/engineering/connection/index.html' },
+  { page: 'firmware-upgrade',     title: '펌웨어 업그레이드', activeNav: 'firmware-upgrade',     outPath: 'settings/firmware/index.html' },
+  { page: 'info',                 title: '정보',              activeNav: 'info',                 outPath: 'info/index.html' },
+  { page: 'info-security',        title: '보안 정보',         activeNav: 'info-security',        outPath: 'info/security/index.html' },
 ];
 
 // ── Helpers ──────────────────────────────────────────────
@@ -53,17 +68,46 @@ function rmrf(dir) {
 }
 
 function fixHtmlPaths(html, basePath) {
-  // Fix href="/..." and src="/..." (but not external URLs like href="https://")
+  // basePath '' (board root) or '/irhea-light-demo' (GitHub Pages).
+  // Rewrite href="/..." and src="/..." to prepend basePath, but ONLY when
+  // basePath is non-empty. Otherwise leave them alone (they already point at root).
+  // Skip protocol-relative ("//foo") and absolute URLs.
+  if (!basePath) return html;
   html = html.replace(/(href|src)="\/(?!\/)/g, `$1="${basePath}/`);
-  // Fix any double slashes after base path
   const escaped = basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   html = html.replace(new RegExp(`${escaped}//`, 'g'), `${basePath}/`);
   return html;
 }
 
 function injectConfig(html, basePath) {
-  const configScript = `<script>window.BASE_PATH = "${basePath}";</script>`;
-  return html.replace('<!-- Global JS -->', configScript + '\n  <!-- Global JS -->');
+  // STATIC_MODE flag tells client-side code to fetch /api/<x>.json instead of
+  // /api/<x>. Injected at build time so it's always true in Apache-served pages.
+  // Also installs a one-shot fetch shim that rewrites GET /api/<x> calls into
+  // /api/<x>.json so that IR pages (which use raw fetch instead of api()) work
+  // without modification. POST requests still 404 — there is no server-side
+  // handler in static mode (admin login, factory-reset, etc. are no-ops here).
+  const configScript = `<script>
+    window.BASE_PATH = "${basePath}";
+    window.STATIC_MODE = true;
+    (function(){
+      var orig = window.fetch;
+      window.fetch = function(input, init){
+        try {
+          var url = (typeof input === 'string') ? input : (input && input.url) || '';
+          var method = (init && init.method ? init.method : (input && input.method) || 'GET').toUpperCase();
+          if (method === 'GET' && /^\\/api\\//.test(url) && !/\\.json(\\?|$)/.test(url)) {
+            input = (window.BASE_PATH || '') + url.replace(/^\\/api\\//, '/api/') + '.json';
+          }
+        } catch(e) {}
+        return orig.call(this, input, init);
+      };
+    })();
+  </script>`.replace(/\n\s*/g, ' ');
+  // Always inject in <head> so the shim is installed before any body-level
+  // <script> tags run. IR pages embed inline scripts that call fetch() during
+  // initial render — if the shim runs after those, the fetches go out
+  // unmodified and 404 against the static .json files.
+  return html.replace('</head>', '  ' + configScript + '\n</head>');
 }
 
 function renderEjs(data) {
@@ -113,6 +157,12 @@ for (const p of pages) {
 console.log('Copying static assets...');
 copyDirSync(path.join(SRC, 'public', 'css'), path.join(DOCS, 'css'));
 copyDirSync(path.join(SRC, 'public', 'js'), path.join(DOCS, 'js'));
+
+// Hand-Drip Cinema prototype lives under public/preview/ — ship it too.
+const previewSrc = path.join(SRC, 'public', 'preview');
+if (fs.existsSync(previewSrc)) {
+  copyDirSync(previewSrc, path.join(DOCS, 'preview'));
+}
 
 // Copy mock data as API JSON files
 console.log('Copying mock data as API endpoints...');
