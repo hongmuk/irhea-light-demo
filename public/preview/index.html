@@ -192,7 +192,11 @@
     const c = document.getElementById('canvas');
     const stage = document.getElementById('stage');
     const w = window.innerWidth, h = window.innerHeight;
-    const portrait = (w / h) < 0.95;
+    // Narrow devices (phones in any orientation) get portrait/zoom mode so
+    // content stays readable. The 1280px threshold matches the canvas width:
+    // anything narrower than the design's native width can't fit at 1× scale,
+    // and below ~900px even a scaled landscape gets too small to use.
+    const portrait = (w / h) < 0.95 || w < 900;
     document.body.classList.toggle('portrait',  portrait);
     document.body.classList.toggle('landscape', !portrait);
     if (portrait) {
